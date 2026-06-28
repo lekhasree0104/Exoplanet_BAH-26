@@ -285,7 +285,7 @@ This downloads all available light curves from TESS Sector 1 and runs the full p
 
 **Problem Statement:** AI-Enabled Detection of Exoplanets from Noisy Astronomical Light Curves
 
-**ISRO Hackathon 2025**
+**ISRO Hackathon 2026**
 
 ---
 
