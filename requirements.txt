@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+anthropic
+lightkurve
+astropy
+astroquery
+matplotlib
+numpy

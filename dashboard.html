@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exoplanet Detection Dashboard</title>
+<style>
+  :root {
+    --bg:        #080818;
+    --surface:   #0e0e2a;
+    --surface2:  #141430;
+    --border:    #1e1e4a;
+    --accent:    #4f8ef7;
+    --planet:    #4ade80;
+    --eb:        #f87171;
+    --spot:      #fbbf24;
+    --blend:     #a78bfa;
+    --muted:     #6b7db3;
+    --text:      #d4e4ff;
+    --textdim:   #8899cc;
+    --strong:    #ff9f7f;
+    --font:      'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    min-height: 100vh;
+  }
+
+  /* ── Top bar ─────────────────────────────────────────────────────── */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .topbar-title {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--accent);
+  }
+  .topbar-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .topbar-right { display: flex; gap: 12px; align-items: center; }
+
+  .btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 14px;
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 12px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-accent { background: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
+  .btn-accent:hover { background: #7ab0ff; color: #000; }
+
+  /* ── Layout ──────────────────────────────────────────────────────── */
+  .layout { display: grid; grid-template-columns: 220px 1fr; height: calc(100vh - 53px); }
+
+  /* ── Sidebar ─────────────────────────────────────────────────────── */
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 16px 0;
+  }
+  .sidebar-section { padding: 0 14px; margin-bottom: 20px; }
+  .sidebar-label { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+
+  .nav-item {
+    padding: 8px 14px;
+    cursor: pointer;
+    color: var(--textdim);
+    font-size: 12px;
+    border-left: 2px solid transparent;
+    transition: all 0.12s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-item:hover { color: var(--text); background: var(--surface2); }
+  .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(79,142,247,0.07); }
+
+  .filter-row { display: flex; flex-direction: column; gap: 6px; }
+  .filter-chip {
+    padding: 5px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    color: var(--textdim);
+    transition: all 0.12s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .filter-chip:hover { border-color: var(--muted); color: var(--text); }
+  .filter-chip.active { color: #000; font-weight: bold; }
+  .filter-chip[data-label="planet"].active       { background: var(--planet); border-color: var(--planet); }
+  .filter-chip[data-label="eclipsing_binary"].active { background: var(--eb); border-color: var(--eb); }
+  .filter-chip[data-label="starspot"].active     { background: var(--spot); border-color: var(--spot); color: #000; }
+  .filter-chip[data-label="blend"].active        { background: var(--blend); border-color: var(--blend); }
+  .filter-chip[data-label="all"].active          { background: var(--accent); border-color: var(--accent); }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-planet { background: var(--planet); }
+  .dot-eb     { background: var(--eb); }
+  .dot-spot   { background: var(--spot); }
+  .dot-blend  { background: var(--blend); }
+  .dot-acc    { background: var(--accent); }
+
+  /* ── Main content ────────────────────────────────────────────────── */
+  .main { overflow-y: auto; }
+
+  /* ── Sections ────────────────────────────────────────────────────── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── Overview ────────────────────────────────────────────────────── */
+  .overview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+  .stat-card { background: var(--surface); padding: 20px 22px; }
+  .stat-val { font-size: 28px; font-weight: bold; color: var(--accent); letter-spacing: -1px; }
+  .stat-label { font-size: 10px; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+
+  /* ── Pipeline diagram ────────────────────────────────────────────── */
+  .pipeline-wrap { padding: 24px 28px; border-bottom: 1px solid var(--border); }
+  .pipeline-title { font-size: 11px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 16px; }
+  .pipeline { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+  .pipe-step {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 11px;
+    position: relative;
+  }
+  .pipe-step-title { color: var(--accent); font-weight: bold; margin-bottom: 4px; font-size: 11px; }
+  .pipe-step-desc { color: var(--textdim); font-size: 10px; line-height: 1.4; max-width: 130px; }
+  .pipe-arrow { color: var(--muted); padding: 0 6px; font-size: 16px; flex-shrink: 0; }
+
+  /* ── Distribution bar ────────────────────────────────────────────── */
+  .dist-wrap { padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 32px; align-items: flex-start; }
+  .dist-bar-outer { flex: 1; }
+  .dist-bar { display: flex; height: 24px; overflow: hidden; border: 1px solid var(--border); }
+  .dist-seg { height: 100%; transition: width 0.4s; }
+  .dist-legend { display: flex; gap: 18px; margin-top: 10px; flex-wrap: wrap; }
+  .dist-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--textdim); }
+  .dist-legend-item span { font-weight: bold; color: var(--text); }
+
+  /* ── Planet candidates ────────────────────────────────────────────── */
+  .candidates-wrap { padding: 20px 28px; border-bottom: 1px solid var(--border); }
+  .candidates-title { font-size: 11px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+  .candidate-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .candidate-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--planet);
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: border-color 0.12s;
+  }
+  .candidate-card:hover { border-color: var(--planet); }
+  .cand-name { color: var(--planet); font-weight: bold; font-size: 12px; margin-bottom: 6px; }
+  .cand-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--textdim); margin-bottom: 3px; }
+  .cand-row span { color: var(--text); }
+
+  /* ── Stars table ─────────────────────────────────────────────────── */
+  .table-wrap { padding: 20px 28px; }
+  .table-controls { display: flex; gap: 10px; margin-bottom: 14px; align-items: center; }
+  .search-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    font-family: var(--font);
+    font-size: 12px;
+    width: 220px;
+    outline: none;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .table-count { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  thead th:hover { color: var(--text); }
+  thead th .sort-arrow { margin-left: 4px; opacity: 0.4; }
+  thead th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(30,30,74,0.6);
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr.expanded { background: rgba(79,142,247,0.05); }
+  tbody td { padding: 9px 12px; font-size: 12px; vertical-align: middle; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .badge-planet        { background: rgba(74,222,128,0.15); color: var(--planet); border: 1px solid rgba(74,222,128,0.3); }
+  .badge-eclipsing_binary { background: rgba(248,113,113,0.15); color: var(--eb); border: 1px solid rgba(248,113,113,0.3); }
+  .badge-starspot      { background: rgba(251,191,36,0.15); color: var(--spot); border: 1px solid rgba(251,191,36,0.3); }
+  .badge-blend         { background: rgba(167,139,250,0.15); color: var(--blend); border: 1px solid rgba(167,139,250,0.3); }
+  .badge-error         { background: rgba(100,100,100,0.15); color: #666; border: 1px solid #333; }
+
+  .snr-bar-outer { background: var(--border); height: 6px; width: 80px; display: inline-block; vertical-align: middle; }
+  .snr-bar-inner { background: var(--accent); height: 100%; transition: width 0.3s; }
+
+  .conf-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+  /* ── Expanded row ────────────────────────────────────────────────── */
+  .expanded-row td { padding: 0; }
+  .expanded-content {
+    background: #0a0a20;
+    border-top: 1px solid var(--border);
+    padding: 20px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .exp-block-title {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .kv-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 11px; }
+  .kv-key { color: var(--textdim); }
+  .kv-val { color: var(--text); font-weight: bold; }
+  .kv-val.green { color: var(--planet); }
+  .kv-val.red   { color: var(--eb); }
+  .kv-val.yellow { color: var(--spot); }
+
+  .prob-bar-wrap { margin-bottom: 6px; }
+  .prob-label { display: flex; justify-content: space-between; font-size: 10px; color: var(--textdim); margin-bottom: 3px; }
+  .prob-bar { height: 8px; background: var(--border); }
+  .prob-fill { height: 100%; transition: width 0.4s; }
+
+  .signal-tabs { display: flex; gap: 0; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .signal-tab { padding: 5px 12px; font-size: 11px; cursor: pointer; color: var(--textdim); border-bottom: 2px solid transparent; }
+  .signal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .hz-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 6px;
+  }
+  .hz-yes { background: rgba(74,222,128,0.1); color: var(--planet); border: 1px solid var(--planet); }
+  .hz-no  { background: rgba(100,100,100,0.1); color: var(--muted); border: 1px solid var(--border); }
+
+  /* ── Pipeline section ────────────────────────────────────────────── */
+  .pipeline-section-wrap { padding: 28px; }
+  .pipeline-full { display: flex; flex-direction: column; gap: 1px; }
+  .pipe-full-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 36px 180px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .pipe-num { font-size: 22px; color: var(--border); font-weight: bold; }
+  .pipe-name { color: var(--accent); font-weight: bold; font-size: 13px; }
+  .pipe-sub  { color: var(--textdim); font-size: 11px; margin-top: 3px; }
+  .pipe-detail { font-size: 11px; color: var(--textdim); line-height: 1.7; }
+  .pipe-detail b { color: var(--text); }
+  .pipe-connector { width: 1px; height: 20px; background: var(--border); margin: 0 auto; }
+
+  /* ── Errors section ──────────────────────────────────────────────── */
+  .errors-wrap { padding: 28px; }
+  .error-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--eb);
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+  .error-target { color: var(--eb); font-weight: bold; }
+  .error-msg    { color: var(--textdim); font-size: 11px; }
+
+  /* ── Load screen ─────────────────────────────────────────────────── */
+  #load-screen {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 999;
+  }
+  .load-title { font-size: 18px; color: var(--accent); letter-spacing: 3px; margin-bottom: 8px; }
+  .load-sub { font-size: 11px; color: var(--muted); margin-bottom: 32px; }
+  .load-drop {
+    border: 2px dashed var(--border);
+    padding: 36px 52px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .load-drop:hover, .load-drop.drag { border-color: var(--accent); }
+  .load-drop-text { font-size: 13px; color: var(--textdim); margin-bottom: 12px; }
+  .load-or { font-size: 11px; color: var(--muted); margin: 16px 0; }
+  #file-input { display: none; }
+
+  .demo-note { font-size: 11px; color: var(--muted); margin-top: 20px; text-align: center; max-width: 360px; line-height: 1.6; }
+  .demo-note b { color: var(--textdim); }
+
+  /* ── Scrollbars ──────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+
+  .empty-state { padding: 40px; text-align: center; color: var(--muted); font-size: 12px; }
+  .tag { font-size: 10px; padding: 1px 6px; border: 1px solid var(--border); color: var(--muted); display: inline-block; margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ── Load screen ─────────────────────────────────────────────────────────── -->
+<div id="load-screen">
+  <div class="load-title">EXOPLANET DETECTION</div>
+  <div class="load-sub">AI-Enabled Detection from Noisy Astronomical Light Curves</div>
+  <div class="load-drop" id="drop-zone">
+    <div class="load-drop-text">Drop <b>results.json</b> here</div>
+    <button class="btn btn-accent" onclick="document.getElementById('file-input').click()">Select File</button>
+    <input type="file" id="file-input" accept=".json">
+    <div class="load-or">— or —</div>
+    <button class="btn" onclick="loadDemo()">Load Demo Data</button>
+  </div>
+  <div class="demo-note">
+    Run <b>python batch_runner.py</b> to generate <b>results.json</b>,<br>
+    then drop it here. Or click "Load Demo Data" to preview the dashboard.
+  </div>
+</div>
+
+<!-- ── App ────────────────────────────────────────────────────────────────── -->
+<div id="app" style="display:none">
+
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">⬡ EXOPLANET PIPELINE DASHBOARD</div>
+      <div class="topbar-sub" id="topbar-meta">—</div>
+    </div>
+    <div class="topbar-right">
+      <span id="topbar-ts" style="font-size:11px;color:var(--muted)"></span>
+      <button class="btn" onclick="reloadFile()">Load New File</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Views</div>
+        <div class="nav-item active" onclick="showSection('overview',this)">
+          <span>◈</span> Overview
+        </div>
+        <div class="nav-item" onclick="showSection('stars',this)">
+          <span>⊞</span> All Stars
+        </div>
+        <div class="nav-item" onclick="showSection('pipeline',this)">
+          <span>⟳</span> Pipeline
+        </div>
+        <div class="nav-item" onclick="showSection('errors',this)">
+          <span>⚠</span> Errors <span id="err-count-badge" class="tag">0</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Filter by Class</div>
+        <div class="filter-row">
+          <div class="filter-chip active" data-label="all" onclick="setFilter('all',this)">
+            <div class="dot dot-acc"></div> All
+          </div>
+          <div class="filter-chip" data-label="planet" onclick="setFilter('planet',this)">
+            <div class="dot dot-planet"></div> Planet
+          </div>
+          <div class="filter-chip" data-label="eclipsing_binary" onclick="setFilter('eclipsing_binary',this)">
+            <div class="dot dot-eb"></div> Eclipsing Binary
+          </div>
+          <div class="filter-chip" data-label="starspot" onclick="setFilter('starspot',this)">
+            <div class="dot dot-spot"></div> Starspot
+          </div>
+          <div class="filter-chip" data-label="blend" onclick="setFilter('blend',this)">
+            <div class="dot dot-blend"></div> Blend
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">SNR Filter</div>
+        <div style="padding:0 2px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px">
+            <span>Min SNR</span><span id="snr-val">0</span>
+          </div>
+          <input type="range" min="0" max="30" value="0" id="snr-slider"
+                 style="width:100%;accent-color:var(--accent)"
+                 oninput="document.getElementById('snr-val').textContent=this.value;applyFilters()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+      <!-- OVERVIEW -->
+      <div class="section active" id="section-overview">
+        <div class="overview-grid" id="stats-grid"></div>
+        <div class="dist-wrap">
+          <div class="dist-bar-outer">
+            <div class="pipeline-title">Classification Distribution</div>
+            <div class="dist-bar" id="dist-bar"></div>
+            <div class="dist-legend" id="dist-legend"></div>
+          </div>
+        </div>
+        <div class="pipeline-wrap">
+          <div class="pipeline-title">Analysis Pipeline</div>
+          <div class="pipeline" id="mini-pipeline"></div>
+        </div>
+        <div class="candidates-wrap" id="candidates-wrap">
+          <div class="candidates-title">🪐 Planet Candidates (SNR &gt; 7)</div>
+          <div class="candidate-cards" id="candidate-cards"></div>
+        </div>
+      </div>
+
+      <!-- STARS TABLE -->
+      <div class="section" id="section-stars">
+        <div class="table-wrap">
+          <div class="table-controls">
+            <input class="search-input" type="text" placeholder="Search target name..." oninput="applyFilters()">
+            <button class="btn" onclick="sortBy('snr')">Sort by SNR</button>
+            <button class="btn" onclick="sortBy('period')">Sort by Period</button>
+            <button class="btn" onclick="sortBy('depth')">Sort by Depth</button>
+            <span class="table-count" id="table-count"></span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortBy('target')">Target <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('label')">Class <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('snr')">Stacked SNR <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('period')">Period (d) <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('depth')">Depth (ppm) <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('dur')">Duration (hr) <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('conf')">Confidence <span class="sort-arrow">↕</span></th>
+                <th onclick="sortBy('fap')">FAP proxy <span class="sort-arrow">↕</span></th>
+                <th>Significance</th>
+                <th>Signals</th>
+              </tr>
+            </thead>
+            <tbody id="stars-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PIPELINE -->
+      <div class="section" id="section-pipeline">
+        <div class="pipeline-section-wrap">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:20px">Full Pipeline Description</div>
+          <div class="pipeline-full" id="pipeline-full"></div>
+        </div>
+      </div>
+
+      <!-- ERRORS -->
+      <div class="section" id="section-errors">
+        <div class="errors-wrap" id="errors-wrap"></div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /layout -->
+</div><!-- /app -->
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let DATA      = null;
+let allRows   = [];
+let filtered  = [];
+let sortKey   = 'snr';
+let sortDir   = -1;
+let filterLabel = 'all';
+let expandedTarget = null;
+
+// ── Load / drop ────────────────────────────────────────────────────────────
+document.getElementById('file-input').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (f) loadFile(f);
+});
+const dropZone = document.getElementById('drop-zone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('drag');
+  const f = e.dataTransfer.files[0];
+  if (f) loadFile(f);
+});
+
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      initDashboard(data);
+    } catch(err) {
+      alert('Could not parse JSON: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function reloadFile() {
+  document.getElementById('load-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+
+// ── Demo data ──────────────────────────────────────────────────────────────
+function loadDemo() {
+  const demo = generateDemoData();
+  initDashboard(demo);
+}
+
+function generateDemoData() {
+  const classes = ['planet','eclipsing_binary','starspot','blend'];
+  const targets = [
+    'TRAPPIST-1','TOI-700','TOI-1338','TOI-2180','TOI-421',
+    'LTT 9779','GJ 1132','HD 21749','TOI-125','TOI-270',
+    'TIC 231663901','TIC 159873822','TIC 441420236',
+    'TIC 149603524','TIC 261136679','TIC 257527578',
+    'TOI-178','TOI-500','TOI-776','TOI-1431',
+    'TOI-1518','TOI-811','TOI-1233','TOI-257',
+  ];
+  const demoDist = {
+    'TRAPPIST-1':'planet','TOI-700':'planet','TOI-1338':'eclipsing_binary',
+    'TOI-2180':'planet','TOI-421':'planet','LTT 9779':'planet',
+    'GJ 1132':'planet','HD 21749':'planet','TOI-125':'planet','TOI-270':'planet',
+    'TIC 231663901':'eclipsing_binary','TIC 159873822':'eclipsing_binary','TIC 441420236':'eclipsing_binary',
+    'TIC 149603524':'starspot','TIC 261136679':'starspot','TIC 257527578':'starspot',
+    'TOI-178':'planet','TOI-500':'blend','TOI-776':'planet','TOI-1431':'blend',
+    'TOI-1518':'eclipsing_binary','TOI-811':'planet','TOI-1233':'planet','TOI-257':'planet',
+  };
+  const results = targets.map(t => {
+    const label = demoDist[t] || classes[Math.floor(Math.random()*4)];
+    const period = +(Math.random()*14+0.5).toFixed(5);
+    const depth  = +(Math.random()*19000+100).toFixed(1);
+    const dur    = +(Math.random()*4+0.5).toFixed(2);
+    const snr    = label==='planet' ? +(Math.random()*30+5).toFixed(2) : +(Math.random()*20+1).toFixed(2);
+    const conf   = +(0.55+Math.random()*0.44).toFixed(3);
+    const fap    = +(1+Math.random()*9).toFixed(2);
+    const probs  = {planet:0,eclipsing_binary:0,starspot:0,blend:0};
+    probs[label] = conf;
+    const rem = 1-conf;
+    const others = classes.filter(c=>c!==label);
+    others.forEach((c,i)=>{ probs[c] = +(i<others.length-1 ? Math.random()*rem*0.6 : rem - probs[others[0]] - (probs[others[1]]||0)).toFixed(3); });
+
+    const signal = {
+      signal_number:1, bls_power:+(Math.random()*0.8+0.1).toFixed(3),
+      fap_proxy:fap, best_period_days:period,
+      transit_depth_ppm:depth, transit_duration_hrs:dur,
+      transit_epoch_btjd:+(2000+Math.random()*1000).toFixed(4),
+      n_transits_expected:Math.max(1,Math.floor(27/period)),
+      noise_ppm:+(Math.random()*300+50).toFixed(1),
+      snr_stacked:snr,
+      significance: snr>15?'Strong (SNR>15)':snr>7?'Significant (SNR>7)':snr>4?'Marginal (SNR 4-7)':'Noise (SNR<4)',
+      classification:{
+        label, description:labelDesc(label), color:labelColor(label),
+        confidence:conf, confidence_level:conf>0.85?'High':conf>0.65?'Moderate':'Low',
+        all_probabilities:probs,
+      }
+    };
+    const fit = label==='planet' ? {
+      period_days:period, transit_depth_ppm:depth, transit_duration_hours:dur,
+      transit_epoch_btjd:signal.transit_epoch_btjd,
+      rp_over_rs:+(Math.sqrt(depth/1e6)).toFixed(5),
+      a_over_rs:+(5+Math.random()*30).toFixed(2),
+      planet_radius_earth:+(0.5+Math.random()*10).toFixed(2),
+      semi_major_axis_au:+(0.01+Math.random()*2).toFixed(4),
+      residual_rms_ppm:+(Math.random()*200+50).toFixed(1),
+      reduced_chi2:+(0.8+Math.random()*1.5).toFixed(3),
+      in_habitable_zone: Math.random()>0.7,
+      hz_inner_au:0.95, hz_outer_au:1.67,
+    } : null;
+    return {
+      target:t, mission:'TESS', status:'ok',
+      timestamp:new Date().toISOString(),
+      error:null, stellar_params:{radius_solar:+(0.5+Math.random()*1.5).toFixed(2),mass_solar:+(0.5+Math.random()*1.5).toFixed(2)},
+      n_points:1200+Math.floor(Math.random()*400),
+      duration_days:27,
+      scatter_ppm:+(Math.random()*800+100).toFixed(1),
+      n_signals_found:1, signals:[signal], transit_fit:fit, plots:[],
+    };
+  });
+  // add one error
+  results.push({target:'TOI-9999',mission:'TESS',status:'error',error:'No data found on MAST',timestamp:new Date().toISOString(),stellar_params:{},n_points:0,duration_days:0,scatter_ppm:0,n_signals_found:0,signals:[],transit_fit:null,plots:[]});
+  return {
+    generated_at:new Date().toISOString(),
+    total_targets:results.length, completed:results.length,
+    summary:{
+      total_processed:results.length, successful:results.length-1,
+      errors:1, label_distribution:{planet:14,eclipsing_binary:4,starspot:3,blend:3},
+      mean_snr:12.4,
+      planet_candidates: results.filter(r=>r.signals.length&&r.signals[0].classification.label==='planet'&&r.signals[0].snr_stacked>7)
+        .map(r=>({target:r.target,period_days:r.signals[0].best_period_days,depth_ppm:r.signals[0].transit_depth_ppm,snr:r.signals[0].snr_stacked,confidence:r.signals[0].classification.confidence}))
+        .sort((a,b)=>b.snr-a.snr),
+    },
+    results,
+  };
+}
+
+function labelDesc(l){return{planet:'Likely Planet Transit',eclipsing_binary:'Eclipsing Binary',starspot:'Starspot / Stellar Activity',blend:'Contaminated Blend'}[l]||l;}
+function labelColor(l){return{planet:'#4ade80',eclipsing_binary:'#f87171',starspot:'#fbbf24',blend:'#a78bfa'}[l]||'#888';}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+function initDashboard(data) {
+  DATA = data;
+  document.getElementById('load-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+
+  // Build flat rows
+  allRows = DATA.results.map(r => {
+    const s = r.signals && r.signals.length ? r.signals[0] : null;
+    return {
+      raw: r,
+      target: r.target,
+      status: r.status,
+      label: s ? s.classification.label : 'error',
+      desc:  s ? s.classification.description : (r.error || '—'),
+      conf:  s ? s.classification.confidence : 0,
+      confLevel: s ? s.classification.confidence_level : '—',
+      snr:   s ? s.snr_stacked : 0,
+      period:s ? s.best_period_days : 0,
+      depth: s ? s.transit_depth_ppm : 0,
+      dur:   s ? s.transit_duration_hrs : 0,
+      fap:   s ? s.fap_proxy : 0,
+      sig:   s ? s.significance : '—',
+      nSig:  r.n_signals_found,
+    };
+  });
+
+  // Meta
+  document.getElementById('topbar-meta').textContent =
+    `${DATA.completed} targets  ·  ${DATA.summary.successful} successful  ·  ${DATA.summary.errors} errors`;
+  if (DATA.generated_at)
+    document.getElementById('topbar-ts').textContent = 'Generated: ' + DATA.generated_at.slice(0,16).replace('T',' ') + ' UTC';
+
+  document.getElementById('err-count-badge').textContent = DATA.summary.errors || 0;
+
+  renderStats();
+  renderDist();
+  renderMiniPipeline();
+  renderCandidates();
+  renderPipelineFull();
+  renderErrors();
+  applyFilters();
+}
+
+// ── Stats cards ────────────────────────────────────────────────────────────
+function renderStats() {
+  const s = DATA.summary;
+  const ld = s.label_distribution || {};
+  const html = [
+    ['Total Processed', s.total_processed],
+    ['Successful',      s.successful],
+    ['Planet Candidates', ld.planet || 0],
+    ['Mean Stacked SNR', s.mean_snr ? s.mean_snr.toFixed(1) : '—'],
+  ].map(([label,val]) => `
+    <div class="stat-card">
+      <div class="stat-val">${val}</div>
+      <div class="stat-label">${label}</div>
+    </div>`).join('');
+  document.getElementById('stats-grid').innerHTML = html;
+}
+
+// ── Distribution bar ───────────────────────────────────────────────────────
+function renderDist() {
+  const ld = DATA.summary.label_distribution || {};
+  const total = Object.values(ld).reduce((a,b)=>a+b,0) || 1;
+  const colors = {planet:'#4ade80',eclipsing_binary:'#f87171',starspot:'#fbbf24',blend:'#a78bfa'};
+  const names  = {planet:'Planet',eclipsing_binary:'Eclipsing Binary',starspot:'Starspot',blend:'Blend'};
+  let bar='', legend='';
+  for (const [k,v] of Object.entries(ld)) {
+    const pct = (v/total*100).toFixed(1);
+    bar    += `<div class="dist-seg" style="width:${pct}%;background:${colors[k]||'#888'}" title="${names[k]||k}: ${v}"></div>`;
+    legend += `<div class="dist-legend-item"><div class="dot" style="background:${colors[k]||'#888'}"></div>${names[k]||k} <span>${v}</span></div>`;
+  }
+  document.getElementById('dist-bar').innerHTML    = bar;
+  document.getElementById('dist-legend').innerHTML = legend;
+}
+
+// ── Mini pipeline ──────────────────────────────────────────────────────────
+const PIPELINE_STEPS = [
+  {name:'MAST Search',     desc:'Search NASA archive for available light curves'},
+  {name:'Download',        desc:'Fetch TESS/Kepler SPOC pipeline data'},
+  {name:'Detrend',         desc:'Flatten systematics with Savitzky-Golay filter'},
+  {name:'BLS × 3',         desc:'Box Least Squares multi-signal search (3 passes)'},
+  {name:'17-Feature Extract', desc:'Extract physical & statistical features per signal'},
+  {name:'RF Classify',     desc:'Random Forest classifier → 4 classes'},
+  {name:'Stacked SNR',     desc:'Compute significance via stacked SNR & FAP proxy'},
+  {name:'Batman Fit',      desc:'Transit model fit → Rp, a/Rs, habitable zone'},
+];
+function renderMiniPipeline() {
+  document.getElementById('mini-pipeline').innerHTML = PIPELINE_STEPS.map((s,i) => `
+    ${i?'<div class="pipe-arrow">→</div>':''}
+    <div class="pipe-step">
+      <div class="pipe-step-title">${s.name}</div>
+      <div class="pipe-step-desc">${s.desc}</div>
+    </div>`).join('');
+}
+
+// ── Candidates ─────────────────────────────────────────────────────────────
+function renderCandidates() {
+  const cands = DATA.summary.planet_candidates || [];
+  if (!cands.length) {
+    document.getElementById('candidates-wrap').style.display='none';
+    return;
+  }
+  document.getElementById('candidate-cards').innerHTML = cands.map(c => `
+    <div class="candidate-card" onclick="goToStar('${c.target}')">
+      <div class="cand-name">🪐 ${c.target}</div>
+      <div class="cand-row"><span>Period</span><span>${c.period_days.toFixed(4)} d</span></div>
+      <div class="cand-row"><span>Depth</span><span>${c.depth_ppm ? c.depth_ppm.toFixed(0) : '—'} ppm</span></div>
+      <div class="cand-row"><span>SNR</span><span>${c.snr.toFixed(1)}</span></div>
+      <div class="cand-row"><span>Confidence</span><span>${(c.confidence*100).toFixed(0)}%</span></div>
+    </div>`).join('');
+}
+
+function goToStar(target) {
+  showSection('stars', document.querySelector('.nav-item:nth-child(2)'));
+  setTimeout(() => {
+    const rows = document.querySelectorAll('#stars-tbody tr[data-target]');
+    for (const r of rows) {
+      if (r.dataset.target === target) { r.click(); r.scrollIntoView({behavior:'smooth',block:'center'}); break; }
+    }
+  }, 100);
+}
+
+// ── Pipeline full ──────────────────────────────────────────────────────────
+const PIPELINE_DETAILS = [
+  {name:'MAST Search',     sub:'lightkurve.search_lightcurve',
+   detail:'Queries the NASA MAST archive for all available light curves for the target. Returns mission, author, sector, and cadence metadata. Supports TESS, Kepler, and K2.'},
+  {name:'Download & Normalise', sub:'lightkurve + SPOC pipeline data',
+   detail:'Downloads the first result. Removes NaN cadences, normalises flux to unit median. Applies 4σ outlier clipping. Stellar metadata (radius, mass) extracted from TIC FITS header.'},
+  {name:'Savitzky-Golay Flatten', sub:'window_length = 401 cadences',
+   detail:'Divides by a sliding polynomial fit to remove long-term stellar and instrumental trends, preserving short-duration transit signals. Window ≈ 5.6 days for 20-min cadence.'},
+  {name:'BLS Periodogram (×3)', sub:'astropy.timeseries.BoxLeastSquares',
+   detail:'<b>Box Least Squares</b> scans 3000 periods from 0.5–20 days with four trial durations. Up to 3 independent signals are extracted by masking previous transits between passes. FAP proxy = peak power / 95th-percentile power.'},
+  {name:'17-Feature Extraction', sub:'Per-signal features',
+   detail:'Features: BLS peak power, transit depth (ppm), duration (hr), stacked SNR, secondary eclipse ratio, odd-even depth asymmetry, sinusoidal correlation, duty cycle, scatter (ppm), point-to-point scatter, best period, transit fraction, FAP proxy, number of transits, shape score, trend power, depth significance.'},
+  {name:'Random Forest Classifier', sub:'scikit-learn, 300 trees, trained on 2400 real+synthetic light curves',
+   detail:'Classifies each signal into <b>planet</b>, <b>eclipsing_binary</b>, <b>starspot</b>, or <b>blend</b>. Trained on real TESS TIC data from ExoFOP (planets, EBs, blends) and known active stars (starspots). Returns per-class probabilities.'},
+  {name:'Stacked SNR & Significance', sub:'Physical noise floor calculation',
+   detail:'SNR = (depth / out-of-transit noise) × √(n_transits). Significance labels: <b>Strong</b> SNR>15, <b>Significant</b> SNR>7, <b>Marginal</b> SNR 4-7, <b>Noise</b> SNR<4. FAP proxy >3 indicates the BLS peak stands out clearly above the noise floor.'},
+  {name:'Batman Transit Model Fit', sub:'batman-package, quadratic limb darkening',
+   detail:'Fits a physical transit model using stellar radius and mass from TIC metadata. Derives <b>Rp/Rs</b> from transit depth, <b>a/Rs</b> from Kepler\'s third law, planet radius in Earth radii, semi-major axis in AU. Checks habitable zone (0.95–1.67× stellar luminosity scaling).'},
+];
+function renderPipelineFull() {
+  document.getElementById('pipeline-full').innerHTML = PIPELINE_DETAILS.map((s,i) => `
+    <div class="pipe-full-step">
+      <div class="pipe-num">${String(i+1).padStart(2,'0')}</div>
+      <div>
+        <div class="pipe-name">${s.name}</div>
+        <div class="pipe-sub">${s.sub}</div>
+      </div>
+      <div class="pipe-detail">${s.detail}</div>
+    </div>
+    ${i<PIPELINE_DETAILS.length-1?'<div class="pipe-connector"></div>':''}`).join('');
+}
+
+// ── Errors ─────────────────────────────────────────────────────────────────
+function renderErrors() {
+  const errors = DATA.results.filter(r=>r.status!=='ok');
+  const wrap = document.getElementById('errors-wrap');
+  if (!errors.length) {
+    wrap.innerHTML = '<div class="empty-state">No errors recorded.</div>';
+    return;
+  }
+  wrap.innerHTML = `<div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px">${errors.length} Errors</div>` +
+    errors.map(r => `
+      <div class="error-row">
+        <span class="error-target">${r.target}</span>
+        <span class="error-msg">${r.error || 'Unknown error'}</span>
+        <span style="font-size:10px;color:var(--muted)">${(r.timestamp||'').slice(0,16).replace('T',' ')}</span>
+      </div>`).join('');
+}
+
+// ── Filtering & sorting ────────────────────────────────────────────────────
+function setFilter(label, el) {
+  filterLabel = label;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const minSnr = +document.getElementById('snr-slider').value;
+  const search = (document.querySelector('.search-input')||{}).value?.toLowerCase()||'';
+  filtered = allRows.filter(r => {
+    if (filterLabel !== 'all' && r.label !== filterLabel) return false;
+    if (r.snr < minSnr) return false;
+    if (search && !r.target.toLowerCase().includes(search)) return false;
+    return true;
+  });
+  filtered.sort((a,b) => {
+    let av=0,bv=0;
+    if (sortKey==='snr')    { av=a.snr; bv=b.snr; }
+    else if (sortKey==='period') { av=a.period; bv=b.period; }
+    else if (sortKey==='depth')  { av=a.depth; bv=b.depth; }
+    else if (sortKey==='conf')   { av=a.conf; bv=b.conf; }
+    else if (sortKey==='fap')    { av=a.fap; bv=b.fap; }
+    else if (sortKey==='dur')    { av=a.dur; bv=b.dur; }
+    else if (sortKey==='target') { return sortDir*(a.target.localeCompare(b.target)); }
+    else if (sortKey==='label')  { return sortDir*(a.label.localeCompare(b.label)); }
+    return sortDir*(av-bv);
+  });
+  renderTable();
+}
+
+function sortBy(key) {
+  if (sortKey===key) sortDir*=-1; else { sortKey=key; sortDir=-1; }
+  document.querySelectorAll('thead th').forEach(th=>th.classList.remove('sorted'));
+  applyFilters();
+}
+
+// ── Table ──────────────────────────────────────────────────────────────────
+function renderTable() {
+  document.getElementById('table-count').textContent = `${filtered.length} / ${allRows.length} stars`;
+  const tbody = document.getElementById('stars-tbody');
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="10" class="empty-state">No results match the current filters.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = filtered.map(row => {
+    const label = row.label;
+    const badgeCls = `badge badge-${label}`;
+    const snrPct = Math.min(100, row.snr/20*100);
+    const confColor = row.conf>0.85?'#4ade80':row.conf>0.65?'#fbbf24':'#f87171';
+    return `
+      <tr data-target="${row.target}" onclick="toggleRow(this,'${row.target}')">
+        <td style="color:var(--accent);font-weight:bold">${row.target}</td>
+        <td><span class="${badgeCls}">${label.replace('_',' ').toUpperCase()}</span></td>
+        <td>
+          ${row.snr.toFixed(1)}
+          <div class="snr-bar-outer"><div class="snr-bar-inner" style="width:${snrPct}%"></div></div>
+        </td>
+        <td>${row.period ? row.period.toFixed(4) : '—'}</td>
+        <td>${row.depth ? row.depth.toFixed(0) : '—'}</td>
+        <td>${row.dur ? row.dur.toFixed(2) : '—'}</td>
+        <td>
+          <span class="conf-dot" style="background:${confColor}"></span>
+          ${(row.conf*100).toFixed(0)}% <span style="color:var(--muted);font-size:10px">${row.confLevel}</span>
+        </td>
+        <td>${row.fap ? row.fap.toFixed(1) : '—'}</td>
+        <td style="font-size:11px;color:var(--textdim)">${row.sig}</td>
+        <td style="color:var(--muted)">${row.nSig}</td>
+      </tr>`;
+  }).join('');
+}
+
+// ── Expanded detail row ────────────────────────────────────────────────────
+function toggleRow(tr, target) {
+  const existing = document.getElementById('exp-'+target);
+  if (existing) {
+    existing.remove();
+    tr.classList.remove('expanded');
+    expandedTarget = null;
+    return;
+  }
+  // Close any other
+  document.querySelectorAll('.expanded-row').forEach(r=>r.remove());
+  document.querySelectorAll('tbody tr').forEach(r=>r.classList.remove('expanded'));
+
+  const r = DATA.results.find(x=>x.target===target);
+  if (!r) return;
+  tr.classList.add('expanded');
+  expandedTarget = target;
+
+  const expTr = document.createElement('tr');
+  expTr.className = 'expanded-row';
+  expTr.id = 'exp-'+target;
+  expTr.innerHTML = `<td colspan="10"><div class="expanded-content">${buildExpanded(r)}</div></td>`;
+  tr.after(expTr);
+}
+
+function buildExpanded(r) {
+  const signals = r.signals || [];
+  const fit = r.transit_fit;
+  const stellar = r.stellar_params || {};
+
+  // Block 1: signals
+  const sigHtml = signals.length ? signals.map(s => {
+    const cl = s.classification;
+    const probs = cl.all_probabilities || {};
+    const probBars = Object.entries(probs).map(([k,v]) => `
+      <div class="prob-bar-wrap">
+        <div class="prob-label"><span>${k.replace('_',' ')}</span><span>${(v*100).toFixed(1)}%</span></div>
+        <div class="prob-bar"><div class="prob-fill" style="width:${v*100}%;background:${labelColor(k)}"></div></div>
+      </div>`).join('');
+    return `
+      <div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:8px">SIGNAL ${s.signal_number}</div>
+        <div class="kv-row"><span class="kv-key">Period</span><span class="kv-val">${s.best_period_days.toFixed(4)} days</span></div>
+        <div class="kv-row"><span class="kv-key">Depth</span><span class="kv-val">${s.transit_depth_ppm.toFixed(0)} ppm</span></div>
+        <div class="kv-row"><span class="kv-key">Duration</span><span class="kv-val">${s.transit_duration_hrs.toFixed(2)} hr</span></div>
+        <div class="kv-row"><span class="kv-key">Epoch (BTJD)</span><span class="kv-val">${s.transit_epoch_btjd.toFixed(4)}</span></div>
+        <div class="kv-row"><span class="kv-key">N transits</span><span class="kv-val">${s.n_transits_expected}</span></div>
+        <div class="kv-row"><span class="kv-key">Noise floor</span><span class="kv-val">${s.noise_ppm.toFixed(0)} ppm</span></div>
+        <div class="kv-row"><span class="kv-key">Stacked SNR</span><span class="kv-val" style="color:${s.snr_stacked>7?'var(--planet)':'var(--spot)'}">${s.snr_stacked.toFixed(2)}</span></div>
+        <div class="kv-row"><span class="kv-key">FAP proxy</span><span class="kv-val">${s.fap_proxy.toFixed(2)}</span></div>
+        <div class="kv-row"><span class="kv-key">Significance</span><span class="kv-val">${s.significance}</span></div>
+        <div style="margin-top:10px">${probBars}</div>
+      </div>`;
+  }).join('') : '<div style="color:var(--muted);font-size:11px">No signals detected.</div>';
+
+  // Block 2: transit fit
+  const fitHtml = fit && !fit.error ? `
+    <div class="kv-row"><span class="kv-key">Planet radius</span><span class="kv-val green">${fit.planet_radius_earth.toFixed(2)} R⊕</span></div>
+    <div class="kv-row"><span class="kv-key">Semi-major axis</span><span class="kv-val">${fit.semi_major_axis_au.toFixed(4)} AU</span></div>
+    <div class="kv-row"><span class="kv-key">Rp / Rs</span><span class="kv-val">${fit.rp_over_rs.toFixed(5)}</span></div>
+    <div class="kv-row"><span class="kv-key">a / Rs</span><span class="kv-val">${fit.a_over_rs.toFixed(2)}</span></div>
+    <div class="kv-row"><span class="kv-key">Residual RMS</span><span class="kv-val">${fit.residual_rms_ppm.toFixed(0)} ppm</span></div>
+    <div class="kv-row"><span class="kv-key">Reduced χ²</span><span class="kv-val">${fit.reduced_chi2.toFixed(3)}</span></div>
+    <div class="kv-row"><span class="kv-key">HZ inner/outer</span><span class="kv-val">${fit.hz_inner_au.toFixed(2)} – ${fit.hz_outer_au.toFixed(2)} AU</span></div>
+    <div style="margin-top:8px">
+      <span class="hz-badge ${fit.in_habitable_zone?'hz-yes':'hz-no'}">
+        ${fit.in_habitable_zone ? '🌿 In Habitable Zone' : '⊗ Outside Habitable Zone'}
+      </span>
+    </div>` : (fit && fit.error ? `<div style="color:var(--muted);font-size:11px">Fit error: ${fit.error}</div>` :
+    `<div style="color:var(--muted);font-size:11px">No transit fit performed (not classified as planet candidate).</div>`);
+
+  // Block 3: stellar + light curve
+  const lcHtml = `
+    <div class="kv-row"><span class="kv-key">Stellar radius</span><span class="kv-val">${(stellar.radius_solar||'—')} R☉</span></div>
+    <div class="kv-row"><span class="kv-key">Stellar mass</span><span class="kv-val">${(stellar.mass_solar||'—')} M☉</span></div>
+    <div class="kv-row"><span class="kv-key">LC points</span><span class="kv-val">${r.n_points}</span></div>
+    <div class="kv-row"><span class="kv-key">Coverage</span><span class="kv-val">${r.duration_days} days</span></div>
+    <div class="kv-row"><span class="kv-key">Scatter</span><span class="kv-val">${r.scatter_ppm} ppm</span></div>
+    <div class="kv-row"><span class="kv-key">Mission</span><span class="kv-val">${r.mission||'—'}</span></div>
+    <div class="kv-row"><span class="kv-key">N signals found</span><span class="kv-val">${r.n_signals_found}</span></div>
+    ${r.plots && r.plots.length ? r.plots.slice(0,2).map(p=>`<img src="data:image/png;base64,${p}" style="width:100%;margin-top:10px;border:1px solid var(--border)" />`).join('') : '<div style="color:var(--muted);font-size:11px;margin-top:10px">No plots embedded (run with --plots flag).</div>'}`;
+
+  return `
+    <div>
+      <div class="exp-block-title">Detected Signals</div>
+      ${sigHtml}
+    </div>
+    <div>
+      <div class="exp-block-title">Transit Model Fit (Batman)</div>
+      ${fitHtml}
+    </div>
+    <div>
+      <div class="exp-block-title">Light Curve & Stellar Info</div>
+      ${lcHtml}
+    </div>`;
+}
+
+function labelColor(l){return{planet:'#4ade80',eclipsing_binary:'#f87171',starspot:'#fbbf24',blend:'#a78bfa'}[l]||'#888';}
+
+// ── Section nav ────────────────────────────────────────────────────────────
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  if (el) el.classList.add('active');
+}
+</script>
+</body>
+</html>

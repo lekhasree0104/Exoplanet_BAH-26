@@ -1,0 +1,2588 @@
+{
+  "generated_at": "2026-06-28T04:01:53.798832",
+  "total_targets": 25,
+  "completed": 25,
+  "summary": {
+    "total_processed": 25,
+    "successful": 25,
+    "errors": 0,
+    "label_distribution": {
+      "starspot": 1,
+      "blend": 18,
+      "planet": 6
+    },
+    "mean_snr": 2.47,
+    "planet_candidates": [
+      {
+        "target": "LTT 9779",
+        "period_days": 0.7926,
+        "depth_ppm": 871.8,
+        "snr": 8.13,
+        "confidence": 0.607
+      }
+    ]
+  },
+  "results": [
+    {
+      "target": "TRAPPIST-1",
+      "mission": "['TESS Sector 70']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:41:03.345321",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.114827,
+        "mass_solar": 1.0
+      },
+      "n_points": 81036,
+      "duration_days": 23.8,
+      "scatter_ppm": 33541.3,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 3.096,
+          "fap_proxy": 1.51,
+          "best_period_days": 1.83945,
+          "transit_depth_ppm": 2007.8,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 3210.2561,
+          "n_transits_expected": 12,
+          "noise_ppm": 33558.9,
+          "snr_stacked": 0.21,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "starspot",
+            "description": "Starspot / Stellar Activity",
+            "color": "#fbbf24",
+            "confidence": 0.49,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.195,
+              "eclipsing_binary": 0.064,
+              "planet": 0.251,
+              "starspot": 0.49
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 3.287,
+          "fap_proxy": 1.55,
+          "best_period_days": 15.82561,
+          "transit_depth_ppm": 5653.4,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 3224.9321,
+          "n_transits_expected": 1,
+          "noise_ppm": 33033.8,
+          "snr_stacked": 0.17,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "starspot",
+            "description": "Starspot / Stellar Activity",
+            "color": "#fbbf24",
+            "confidence": 0.49,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.195,
+              "eclipsing_binary": 0.064,
+              "planet": 0.251,
+              "starspot": 0.49
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 3.036,
+          "fap_proxy": 1.42,
+          "best_period_days": 13.05569,
+          "transit_depth_ppm": 4370.1,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 3209.8161,
+          "n_transits_expected": 1,
+          "noise_ppm": 32931.3,
+          "snr_stacked": 0.13,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "starspot",
+            "description": "Starspot / Stellar Activity",
+            "color": "#fbbf24",
+            "confidence": 0.49,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.195,
+              "eclipsing_binary": 0.064,
+              "planet": 0.251,
+              "starspot": 0.49
+            }
+          }
+        }
+      ],
+      "transit_fit": null,
+      "plots": []
+    },
+    {
+      "target": "TOI-700",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:41:22.777510",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.41945699,
+        "mass_solar": 1.0
+      },
+      "n_points": 18279,
+      "duration_days": 27.9,
+      "scatter_ppm": 1647.5,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 31.676,
+          "fap_proxy": 1.0,
+          "best_period_days": 16.92447,
+          "transit_depth_ppm": 2435.0,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1340.0915,
+          "n_transits_expected": 1,
+          "noise_ppm": 1645.2,
+          "snr_stacked": 1.48,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.676,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.676,
+              "eclipsing_binary": 0.0,
+              "planet": 0.323,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 12.725,
+          "fap_proxy": 1.69,
+          "best_period_days": 15.47449,
+          "transit_depth_ppm": 1221.9,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1332.0315,
+          "n_transits_expected": 1,
+          "noise_ppm": 1641.9,
+          "snr_stacked": 0.74,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.62,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.62,
+              "eclipsing_binary": 0.0,
+              "planet": 0.38,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 10.154,
+          "fap_proxy": 1.55,
+          "best_period_days": 13.89446,
+          "transit_depth_ppm": 969.4,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1328.7635,
+          "n_transits_expected": 2,
+          "noise_ppm": 1634.6,
+          "snr_stacked": 0.84,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.622,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.622,
+              "eclipsing_binary": 0.0,
+              "planet": 0.376,
+              "starspot": 0.002
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 16.92447,
+        "transit_depth_ppm": 2435.0,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 1340.0915,
+        "rp_over_rs": 0.04935,
+        "a_over_rs": 66.14,
+        "planet_radius_earth": 2.26,
+        "semi_major_axis_au": 0.129,
+        "residual_rms_ppm": 1661.8,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.4,
+        "hz_outer_au": 0.576
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-1338",
+      "mission": "['TESS Sector 04']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:42:08.506383",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.51811004,
+        "mass_solar": 1.0
+      },
+      "n_points": 14439,
+      "duration_days": 25.4,
+      "scatter_ppm": 2174.2,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 43.692,
+          "fap_proxy": 1.0,
+          "best_period_days": 19.6944,
+          "transit_depth_ppm": 9089.2,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1424.5548,
+          "n_transits_expected": 1,
+          "noise_ppm": 2166.3,
+          "snr_stacked": 4.2,
+          "significance": "Marginal (SNR 4-7)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.68,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.294,
+              "eclipsing_binary": 0.007,
+              "planet": 0.68,
+              "starspot": 0.019
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 31.874,
+          "fap_proxy": 1.46,
+          "best_period_days": 14.55769,
+          "transit_depth_ppm": 1140.3,
+          "transit_duration_hrs": 3.84,
+          "transit_epoch_btjd": 1416.5308,
+          "n_transits_expected": 1,
+          "noise_ppm": 2156.4,
+          "snr_stacked": 0.53,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.656,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.656,
+              "eclipsing_binary": 0.0,
+              "planet": 0.338,
+              "starspot": 0.007
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 15.578,
+          "fap_proxy": 1.6,
+          "best_period_days": 12.38596,
+          "transit_depth_ppm": 1580.3,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1422.1108,
+          "n_transits_expected": 2,
+          "noise_ppm": 2134.8,
+          "snr_stacked": 1.05,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.655,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.655,
+              "eclipsing_binary": 0.001,
+              "planet": 0.338,
+              "starspot": 0.006
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 19.6944,
+        "transit_depth_ppm": 9089.2,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 1424.5548,
+        "rp_over_rs": 0.09534,
+        "a_over_rs": 20.22,
+        "planet_radius_earth": 15.79,
+        "semi_major_axis_au": 0.1427,
+        "residual_rms_ppm": 2688.1,
+        "reduced_chi2": 1.012,
+        "in_habitable_zone": false,
+        "hz_inner_au": 1.447,
+        "hz_outer_au": 2.085
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-2180",
+      "mission": "['TESS Sector 14']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:43:20.905074",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.62761998,
+        "mass_solar": 1.0
+      },
+      "n_points": 12850,
+      "duration_days": 26.8,
+      "scatter_ppm": 563.3,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 10.9,
+          "fap_proxy": 1.53,
+          "best_period_days": 1.72891,
+          "transit_depth_ppm": 100.4,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1684.179,
+          "n_transits_expected": 15,
+          "noise_ppm": 563.8,
+          "snr_stacked": 0.69,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.508,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.508,
+              "eclipsing_binary": 0.004,
+              "planet": 0.485,
+              "starspot": 0.003
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 10.386,
+          "fap_proxy": 1.4,
+          "best_period_days": 13.60837,
+          "transit_depth_ppm": 325.8,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1688.227,
+          "n_transits_expected": 1,
+          "noise_ppm": 537.4,
+          "snr_stacked": 0.61,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.623,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.623,
+              "eclipsing_binary": 0.0,
+              "planet": 0.375,
+              "starspot": 0.002
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 9.595,
+          "fap_proxy": 1.47,
+          "best_period_days": 10.50684,
+          "transit_depth_ppm": 285.2,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1688.547,
+          "n_transits_expected": 2,
+          "noise_ppm": 536.8,
+          "snr_stacked": 0.75,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.555,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.555,
+              "eclipsing_binary": 0.0,
+              "planet": 0.443,
+              "starspot": 0.003
+            }
+          }
+        }
+      ],
+      "transit_fit": null,
+      "plots": []
+    },
+    {
+      "target": "TOI-421",
+      "mission": "['TESS Sector 05']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:44:05.276981",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.86012399,
+        "mass_solar": 1.0
+      },
+      "n_points": 17266,
+      "duration_days": 25.7,
+      "scatter_ppm": 724.5,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 89.366,
+          "fap_proxy": 1.9,
+          "best_period_days": 16.07919,
+          "transit_depth_ppm": 880.6,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1440.1248,
+          "n_transits_expected": 1,
+          "noise_ppm": 719.0,
+          "snr_stacked": 1.22,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.693,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.693,
+              "eclipsing_binary": 0.0,
+              "planet": 0.302,
+              "starspot": 0.004
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 33.987,
+          "fap_proxy": 3.1,
+          "best_period_days": 5.20107,
+          "transit_depth_ppm": 498.7,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1441.2808,
+          "n_transits_expected": 4,
+          "noise_ppm": 714.7,
+          "snr_stacked": 1.4,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.678,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.678,
+              "eclipsing_binary": 0.001,
+              "planet": 0.322,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 10.489,
+          "fap_proxy": 1.46,
+          "best_period_days": 12.25592,
+          "transit_depth_ppm": 301.8,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1448.0688,
+          "n_transits_expected": 2,
+          "noise_ppm": 710.0,
+          "snr_stacked": 0.6,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.615,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.615,
+              "eclipsing_binary": 0.0,
+              "planet": 0.385,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 16.07919,
+        "transit_depth_ppm": 880.6,
+        "transit_duration_hours": 2.88,
+        "transit_epoch_btjd": 1440.1248,
+        "rp_over_rs": 0.02967,
+        "a_over_rs": 31.17,
+        "planet_radius_earth": 2.78,
+        "semi_major_axis_au": 0.1247,
+        "residual_rms_ppm": 728.5,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.82,
+        "hz_outer_au": 1.181
+      },
+      "plots": []
+    },
+    {
+      "target": "LTT 9779",
+      "mission": "['TESS Sector 02']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:44:37.974836",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.98017299,
+        "mass_solar": 1.0
+      },
+      "n_points": 18282,
+      "duration_days": 27.4,
+      "scatter_ppm": 668.9,
+      "n_signals_found": 1,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 771.357,
+          "fap_proxy": 15.33,
+          "best_period_days": 0.7926,
+          "transit_depth_ppm": 871.8,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1354.205,
+          "n_transits_expected": 34,
+          "noise_ppm": 625.1,
+          "snr_stacked": 8.13,
+          "significance": "Significant (SNR>7)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.607,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.322,
+              "eclipsing_binary": 0.066,
+              "planet": 0.607,
+              "starspot": 0.005
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 0.7926,
+        "transit_depth_ppm": 871.8,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 1354.205,
+        "rp_over_rs": 0.02953,
+        "a_over_rs": 3.68,
+        "planet_radius_earth": 3.16,
+        "semi_major_axis_au": 0.0168,
+        "residual_rms_ppm": 721.3,
+        "reduced_chi2": 1.01,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.935,
+        "hz_outer_au": 1.346
+      },
+      "plots": []
+    },
+    {
+      "target": "GJ 1132",
+      "mission": "['TESS Sector 09']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:44:52.730269",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.22640701,
+        "mass_solar": 1.0
+      },
+      "n_points": 15866,
+      "duration_days": 24.2,
+      "scatter_ppm": 1890.3,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 80.012,
+          "fap_proxy": 3.28,
+          "best_period_days": 1.63138,
+          "transit_depth_ppm": 1194.1,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1544.6985,
+          "n_transits_expected": 14,
+          "noise_ppm": 1857.9,
+          "snr_stacked": 2.4,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.547,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.547,
+              "eclipsing_binary": 0.004,
+              "planet": 0.438,
+              "starspot": 0.011
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 17.148,
+          "fap_proxy": 1.8,
+          "best_period_days": 4.32327,
+          "transit_depth_ppm": 813.7,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1546.1185,
+          "n_transits_expected": 5,
+          "noise_ppm": 1826.2,
+          "snr_stacked": 1.0,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.62,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.62,
+              "eclipsing_binary": 0.001,
+              "planet": 0.368,
+              "starspot": 0.011
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 11.995,
+          "fap_proxy": 1.42,
+          "best_period_days": 6.63805,
+          "transit_depth_ppm": 1174.0,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1549.8905,
+          "n_transits_expected": 3,
+          "noise_ppm": 1808.1,
+          "snr_stacked": 1.12,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.601,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.601,
+              "eclipsing_binary": 0.001,
+              "planet": 0.393,
+              "starspot": 0.005
+            }
+          }
+        }
+      ],
+      "transit_fit": null,
+      "plots": []
+    },
+    {
+      "target": "HD 21749",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:46:01.271022",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.70546401,
+        "mass_solar": 1.0
+      },
+      "n_points": 18264,
+      "duration_days": 27.9,
+      "scatter_ppm": 380.1,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 130.642,
+          "fap_proxy": 1.0,
+          "best_period_days": 14.68773,
+          "transit_depth_ppm": 1309.7,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1338.5128,
+          "n_transits_expected": 1,
+          "noise_ppm": 377.2,
+          "snr_stacked": 3.47,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.694,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.694,
+              "eclipsing_binary": 0.0,
+              "planet": 0.306,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 104.26,
+          "fap_proxy": 1.43,
+          "best_period_days": 12.84111,
+          "transit_depth_ppm": 428.8,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1337.4728,
+          "n_transits_expected": 2,
+          "noise_ppm": 373.9,
+          "snr_stacked": 1.62,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.744,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.744,
+              "eclipsing_binary": 0.0,
+              "planet": 0.249,
+              "starspot": 0.007
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 35.822,
+          "fap_proxy": 1.65,
+          "best_period_days": 0.5065,
+          "transit_depth_ppm": 47.3,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1325.6128,
+          "n_transits_expected": 55,
+          "noise_ppm": 375.2,
+          "snr_stacked": 0.93,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.705,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.705,
+              "eclipsing_binary": 0.0,
+              "planet": 0.295,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 14.68773,
+        "transit_depth_ppm": 1309.7,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 1338.5128,
+        "rp_over_rs": 0.03619,
+        "a_over_rs": 35.78,
+        "planet_radius_earth": 2.78,
+        "semi_major_axis_au": 0.1174,
+        "residual_rms_ppm": 404.3,
+        "reduced_chi2": 1.002,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.673,
+        "hz_outer_au": 0.969
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-125",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:46:33.597694",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.85226601,
+        "mass_solar": 1.0
+      },
+      "n_points": 18275,
+      "duration_days": 27.9,
+      "scatter_ppm": 1091.2,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 50.058,
+          "fap_proxy": 2.87,
+          "best_period_days": 4.65488,
+          "transit_depth_ppm": 481.1,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1327.4299,
+          "n_transits_expected": 5,
+          "noise_ppm": 1087.2,
+          "snr_stacked": 0.99,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.749,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.749,
+              "eclipsing_binary": 0.001,
+              "planet": 0.246,
+              "starspot": 0.005
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 35.381,
+          "fap_proxy": 2.02,
+          "best_period_days": 9.16089,
+          "transit_depth_ppm": 640.9,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1334.4539,
+          "n_transits_expected": 3,
+          "noise_ppm": 1060.1,
+          "snr_stacked": 1.05,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.7,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.7,
+              "eclipsing_binary": 0.0,
+              "planet": 0.3,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 17.431,
+          "fap_proxy": 1.17,
+          "best_period_days": 10.44181,
+          "transit_depth_ppm": 592.7,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1332.3979,
+          "n_transits_expected": 2,
+          "noise_ppm": 1052.7,
+          "snr_stacked": 0.8,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.702,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.702,
+              "eclipsing_binary": 0.0,
+              "planet": 0.298,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 4.65488,
+        "transit_depth_ppm": 481.1,
+        "transit_duration_hours": 2.88,
+        "transit_epoch_btjd": 1327.4299,
+        "rp_over_rs": 0.02193,
+        "a_over_rs": 13.77,
+        "planet_radius_earth": 2.04,
+        "semi_major_axis_au": 0.0546,
+        "residual_rms_ppm": 1093.8,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.813,
+        "hz_outer_au": 1.171
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-270",
+      "mission": "['TESS Sector 03']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:46:56.581711",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.374358,
+        "mass_solar": 1.0
+      },
+      "n_points": 12973,
+      "duration_days": 20.3,
+      "scatter_ppm": 1289.2,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 156.052,
+          "fap_proxy": 1.83,
+          "best_period_days": 11.37813,
+          "transit_depth_ppm": 2123.9,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1389.6813,
+          "n_transits_expected": 1,
+          "noise_ppm": 1272.8,
+          "snr_stacked": 1.67,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.813,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.813,
+              "eclipsing_binary": 0.0,
+              "planet": 0.185,
+              "starspot": 0.002
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 105.184,
+          "fap_proxy": 1.43,
+          "best_period_days": 11.32611,
+          "transit_depth_ppm": 2547.0,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1389.5053,
+          "n_transits_expected": 1,
+          "noise_ppm": 1251.6,
+          "snr_stacked": 2.03,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.705,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.705,
+              "eclipsing_binary": 0.0,
+              "planet": 0.295,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 37.846,
+          "fap_proxy": 2.82,
+          "best_period_days": 3.36095,
+          "transit_depth_ppm": 829.4,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1387.0813,
+          "n_transits_expected": 6,
+          "noise_ppm": 1246.9,
+          "snr_stacked": 1.63,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.655,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.655,
+              "eclipsing_binary": 0.0,
+              "planet": 0.332,
+              "starspot": 0.013
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 11.37813,
+        "transit_depth_ppm": 2123.9,
+        "transit_duration_hours": 1.92,
+        "transit_epoch_btjd": 1389.6813,
+        "rp_over_rs": 0.04609,
+        "a_over_rs": 56.87,
+        "planet_radius_earth": 1.88,
+        "semi_major_axis_au": 0.099,
+        "residual_rms_ppm": 1302.3,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.357,
+        "hz_outer_au": 0.514
+      },
+      "plots": []
+    },
+    {
+      "target": "TIC 231663901",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:47:23.686732",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.89077401,
+        "mass_solar": 1.0
+      },
+      "n_points": 17984,
+      "duration_days": 27.9,
+      "scatter_ppm": 4153.8,
+      "n_signals_found": 1,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 565.164,
+          "fap_proxy": 8.37,
+          "best_period_days": 1.42981,
+          "transit_depth_ppm": 5274.5,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1326.0123,
+          "n_transits_expected": 19,
+          "noise_ppm": 3905.1,
+          "snr_stacked": 5.89,
+          "significance": "Marginal (SNR 4-7)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.447,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.194,
+              "eclipsing_binary": 0.159,
+              "planet": 0.447,
+              "starspot": 0.2
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 1.42981,
+        "transit_depth_ppm": 5274.5,
+        "transit_duration_hours": 1.92,
+        "transit_epoch_btjd": 1326.0123,
+        "rp_over_rs": 0.07263,
+        "a_over_rs": 6.0,
+        "planet_radius_earth": 7.06,
+        "semi_major_axis_au": 0.0248,
+        "residual_rms_ppm": 4343.7,
+        "reduced_chi2": 1.002,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.849,
+        "hz_outer_au": 1.224
+      },
+      "plots": []
+    },
+    {
+      "target": "TIC 159873822",
+      "mission": "['TESS Sector 16']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:47:54.006529",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.76246899,
+        "mass_solar": 1.0
+      },
+      "n_points": 14887,
+      "duration_days": 23.7,
+      "scatter_ppm": 1520.6,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 41.563,
+          "fap_proxy": 1.27,
+          "best_period_days": 13.97249,
+          "transit_depth_ppm": 1060.2,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1738.9188,
+          "n_transits_expected": 1,
+          "noise_ppm": 1516.3,
+          "snr_stacked": 0.7,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.674,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.674,
+              "eclipsing_binary": 0.0,
+              "planet": 0.317,
+              "starspot": 0.009
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 23.555,
+          "fap_proxy": 1.45,
+          "best_period_days": 15.8126,
+          "transit_depth_ppm": 962.6,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1739.1988,
+          "n_transits_expected": 1,
+          "noise_ppm": 1501.2,
+          "snr_stacked": 0.64,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.596,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.596,
+              "eclipsing_binary": 0.0,
+              "planet": 0.401,
+              "starspot": 0.003
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 20.275,
+          "fap_proxy": 1.73,
+          "best_period_days": 3.84211,
+          "transit_depth_ppm": 771.1,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1740.1188,
+          "n_transits_expected": 6,
+          "noise_ppm": 1491.4,
+          "snr_stacked": 1.27,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.637,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.637,
+              "eclipsing_binary": 0.0,
+              "planet": 0.357,
+              "starspot": 0.006
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 13.97249,
+        "transit_depth_ppm": 1060.2,
+        "transit_duration_hours": 2.88,
+        "transit_epoch_btjd": 1738.9188,
+        "rp_over_rs": 0.03256,
+        "a_over_rs": 32.02,
+        "planet_radius_earth": 2.71,
+        "semi_major_axis_au": 0.1135,
+        "residual_rms_ppm": 1526.2,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.727,
+        "hz_outer_au": 1.047
+      },
+      "plots": []
+    },
+    {
+      "target": "TIC 441420236",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:48:09.230598",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.69800901,
+        "mass_solar": 1.0
+      },
+      "n_points": 17687,
+      "duration_days": 27.1,
+      "scatter_ppm": 1272.8,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 161.594,
+          "fap_proxy": 1.91,
+          "best_period_days": 16.16372,
+          "transit_depth_ppm": 1792.3,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1330.2925,
+          "n_transits_expected": 1,
+          "noise_ppm": 1257.3,
+          "snr_stacked": 1.43,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.786,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.786,
+              "eclipsing_binary": 0.002,
+              "planet": 0.208,
+              "starspot": 0.004
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 106.646,
+          "fap_proxy": 1.88,
+          "best_period_days": 12.56152,
+          "transit_depth_ppm": 1773.6,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1335.3125,
+          "n_transits_expected": 2,
+          "noise_ppm": 1170.9,
+          "snr_stacked": 2.14,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.748,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.748,
+              "eclipsing_binary": 0.001,
+              "planet": 0.249,
+              "starspot": 0.002
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 76.395,
+          "fap_proxy": 1.6,
+          "best_period_days": 0.57803,
+          "transit_depth_ppm": 205.6,
+          "transit_duration_hrs": 3.84,
+          "transit_epoch_btjd": 1326.2805,
+          "n_transits_expected": 46,
+          "noise_ppm": 898.4,
+          "snr_stacked": 1.55,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.512,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.512,
+              "eclipsing_binary": 0.013,
+              "planet": 0.446,
+              "starspot": 0.029
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 16.16372,
+        "transit_depth_ppm": 1792.3,
+        "transit_duration_hours": 2.88,
+        "transit_epoch_btjd": 1330.2925,
+        "rp_over_rs": 0.04234,
+        "a_over_rs": 38.54,
+        "planet_radius_earth": 3.22,
+        "semi_major_axis_au": 0.1251,
+        "residual_rms_ppm": 1336.4,
+        "reduced_chi2": 1.009,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.666,
+        "hz_outer_au": 0.959
+      },
+      "plots": []
+    },
+    {
+      "target": "TIC 149603524",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:48:31.815591",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.21427,
+        "mass_solar": 1.0
+      },
+      "n_points": 17702,
+      "duration_days": 27.9,
+      "scatter_ppm": 878.9,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 58.684,
+          "fap_proxy": 2.91,
+          "best_period_days": 8.82277,
+          "transit_depth_ppm": 2640.7,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1326.1356,
+          "n_transits_expected": 3,
+          "noise_ppm": 875.8,
+          "snr_stacked": 5.22,
+          "significance": "Marginal (SNR 4-7)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.531,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.462,
+              "eclipsing_binary": 0.007,
+              "planet": 0.531,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 27.738,
+          "fap_proxy": 2.42,
+          "best_period_days": 8.82277,
+          "transit_depth_ppm": 1681.3,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1326.0236,
+          "n_transits_expected": 3,
+          "noise_ppm": 872.5,
+          "snr_stacked": 3.34,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.577,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.419,
+              "eclipsing_binary": 0.004,
+              "planet": 0.577,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 16.445,
+          "fap_proxy": 1.62,
+          "best_period_days": 8.95932,
+          "transit_depth_ppm": 1665.6,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1330.5476,
+          "n_transits_expected": 3,
+          "noise_ppm": 869.5,
+          "snr_stacked": 3.32,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.721,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.721,
+              "eclipsing_binary": 0.0,
+              "planet": 0.279,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 8.82277,
+        "transit_depth_ppm": 2640.7,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 1326.1356,
+        "rp_over_rs": 0.05139,
+        "a_over_rs": 14.8,
+        "planet_radius_earth": 6.81,
+        "semi_major_axis_au": 0.0836,
+        "residual_rms_ppm": 972.4,
+        "reduced_chi2": 1.005,
+        "in_habitable_zone": false,
+        "hz_inner_au": 1.158,
+        "hz_outer_au": 1.668
+      },
+      "plots": []
+    },
+    {
+      "target": "TIC 261136679",
+      "mission": "['TESS Sector 01']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:48:54.041065",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.14889002,
+        "mass_solar": 1.0
+      },
+      "n_points": 18241,
+      "duration_days": 27.9,
+      "scatter_ppm": 124.5,
+      "n_signals_found": 2,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 422.06,
+          "fap_proxy": 4.52,
+          "best_period_days": 6.26742,
+          "transit_depth_ppm": 176.5,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1325.505,
+          "n_transits_expected": 4,
+          "noise_ppm": 121.1,
+          "snr_stacked": 2.92,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.629,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.629,
+              "eclipsing_binary": 0.015,
+              "planet": 0.352,
+              "starspot": 0.003
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 21.688,
+          "fap_proxy": 1.45,
+          "best_period_days": 16.11821,
+          "transit_depth_ppm": 85.3,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1332.233,
+          "n_transits_expected": 1,
+          "noise_ppm": 118.9,
+          "snr_stacked": 0.72,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.669,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.669,
+              "eclipsing_binary": 0.0,
+              "planet": 0.329,
+              "starspot": 0.002
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 6.26742,
+        "transit_depth_ppm": 176.5,
+        "transit_duration_hours": 2.88,
+        "transit_epoch_btjd": 1325.505,
+        "rp_over_rs": 0.01329,
+        "a_over_rs": 12.45,
+        "planet_radius_earth": 1.66,
+        "semi_major_axis_au": 0.0665,
+        "residual_rms_ppm": 128.1,
+        "reduced_chi2": 1.001,
+        "in_habitable_zone": false,
+        "hz_inner_au": 1.095,
+        "hz_outer_au": 1.578
+      },
+      "plots": []
+    },
+    {
+      "target": "TIC 257527578",
+      "mission": "['TESS Sector 31']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:49:13.583134",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.81719995,
+        "mass_solar": 1.0
+      },
+      "n_points": 99890,
+      "duration_days": 25.4,
+      "scatter_ppm": 3199.4,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 2.43,
+          "fap_proxy": 1.53,
+          "best_period_days": 9.12187,
+          "transit_depth_ppm": 313.2,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 2149.7708,
+          "n_transits_expected": 2,
+          "noise_ppm": 3198.6,
+          "snr_stacked": 0.14,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.506,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.439,
+              "eclipsing_binary": 0.02,
+              "planet": 0.506,
+              "starspot": 0.035
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 2.32,
+          "fap_proxy": 1.48,
+          "best_period_days": 5.16856,
+          "transit_depth_ppm": 239.9,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 2144.7308,
+          "n_transits_expected": 4,
+          "noise_ppm": 3186.3,
+          "snr_stacked": 0.15,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.502,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.443,
+              "eclipsing_binary": 0.02,
+              "planet": 0.502,
+              "starspot": 0.035
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 2.351,
+          "fap_proxy": 1.49,
+          "best_period_days": 1.50133,
+          "transit_depth_ppm": 135.1,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 2145.0468,
+          "n_transits_expected": 16,
+          "noise_ppm": 3161.4,
+          "snr_stacked": 0.17,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.501,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.44,
+              "eclipsing_binary": 0.02,
+              "planet": 0.501,
+              "starspot": 0.039
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 9.12187,
+        "transit_depth_ppm": 313.2,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 2149.7708,
+        "rp_over_rs": 0.0177,
+        "a_over_rs": 10.11,
+        "planet_radius_earth": 3.51,
+        "semi_major_axis_au": 0.0854,
+        "residual_rms_ppm": 3200.0,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 1.733,
+        "hz_outer_au": 2.496
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-178",
+      "mission": "['TESS Sector 02']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:49:50.058429",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.660806,
+        "mass_solar": 1.0
+      },
+      "n_points": 18298,
+      "duration_days": 27.4,
+      "scatter_ppm": 1255.6,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 83.11,
+          "fap_proxy": 2.27,
+          "best_period_days": 6.56002,
+          "transit_depth_ppm": 1084.0,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1360.2368,
+          "n_transits_expected": 4,
+          "noise_ppm": 1249.4,
+          "snr_stacked": 1.74,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.733,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.733,
+              "eclipsing_binary": 0.0,
+              "planet": 0.261,
+              "starspot": 0.006
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 46.585,
+          "fap_proxy": 2.08,
+          "best_period_days": 10.35729,
+          "transit_depth_ppm": 910.6,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1354.5448,
+          "n_transits_expected": 2,
+          "noise_ppm": 1232.7,
+          "snr_stacked": 1.04,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.731,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.731,
+              "eclipsing_binary": 0.0,
+              "planet": 0.266,
+              "starspot": 0.003
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 24.648,
+          "fap_proxy": 1.39,
+          "best_period_days": 10.7149,
+          "transit_depth_ppm": 1027.6,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1356.4448,
+          "n_transits_expected": 2,
+          "noise_ppm": 1223.4,
+          "snr_stacked": 1.19,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.606,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.606,
+              "eclipsing_binary": 0.0,
+              "planet": 0.394,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 6.56002,
+        "transit_depth_ppm": 1084.0,
+        "transit_duration_hours": 1.92,
+        "transit_epoch_btjd": 1360.2368,
+        "rp_over_rs": 0.03292,
+        "a_over_rs": 22.32,
+        "planet_radius_earth": 2.37,
+        "semi_major_axis_au": 0.0686,
+        "residual_rms_ppm": 1263.1,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.63,
+        "hz_outer_au": 0.908
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-500",
+      "mission": "['TESS Sector 06']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:50:15.384322",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.75182498,
+        "mass_solar": 1.0
+      },
+      "n_points": 14641,
+      "duration_days": 21.8,
+      "scatter_ppm": 732.5,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 17.418,
+          "fap_proxy": 1.47,
+          "best_period_days": 18.40697,
+          "transit_depth_ppm": 617.6,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1468.2787,
+          "n_transits_expected": 1,
+          "noise_ppm": 731.5,
+          "snr_stacked": 0.84,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.617,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.617,
+              "eclipsing_binary": 0.0,
+              "planet": 0.381,
+              "starspot": 0.002
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 8.592,
+          "fap_proxy": 1.55,
+          "best_period_days": 1.42331,
+          "transit_depth_ppm": 84.1,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1469.6576,
+          "n_transits_expected": 15,
+          "noise_ppm": 731.5,
+          "snr_stacked": 0.45,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.55,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.55,
+              "eclipsing_binary": 0.03,
+              "planet": 0.391,
+              "starspot": 0.03
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 9.126,
+          "fap_proxy": 1.47,
+          "best_period_days": 1.42981,
+          "transit_depth_ppm": 141.8,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1468.5896,
+          "n_transits_expected": 15,
+          "noise_ppm": 676.3,
+          "snr_stacked": 0.81,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.539,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.539,
+              "eclipsing_binary": 0.03,
+              "planet": 0.405,
+              "starspot": 0.026
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 18.40697,
+        "transit_depth_ppm": 617.6,
+        "transit_duration_hours": 0.96,
+        "transit_epoch_btjd": 1468.2787,
+        "rp_over_rs": 0.02485,
+        "a_over_rs": 39.02,
+        "planet_radius_earth": 2.04,
+        "semi_major_axis_au": 0.1364,
+        "residual_rms_ppm": 734.4,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.717,
+        "hz_outer_au": 1.033
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-776",
+      "mission": "['TESS Sector 10']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:50:49.348675",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.53302401,
+        "mass_solar": 1.0
+      },
+      "n_points": 15198,
+      "duration_days": 24.5,
+      "scatter_ppm": 968.7,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 67.907,
+          "fap_proxy": 1.63,
+          "best_period_days": 16.83995,
+          "transit_depth_ppm": 1052.7,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1571.424,
+          "n_transits_expected": 1,
+          "noise_ppm": 961.9,
+          "snr_stacked": 1.09,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.698,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.698,
+              "eclipsing_binary": 0.0,
+              "planet": 0.296,
+              "starspot": 0.006
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 23.902,
+          "fap_proxy": 1.8,
+          "best_period_days": 15.25342,
+          "transit_depth_ppm": 918.1,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1572.632,
+          "n_transits_expected": 1,
+          "noise_ppm": 956.5,
+          "snr_stacked": 0.96,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.573,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.573,
+              "eclipsing_binary": 0.0,
+              "planet": 0.427,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 15.702,
+          "fap_proxy": 1.51,
+          "best_period_days": 9.16089,
+          "transit_depth_ppm": 579.9,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1576.4,
+          "n_transits_expected": 2,
+          "noise_ppm": 953.0,
+          "snr_stacked": 0.86,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.595,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.595,
+              "eclipsing_binary": 0.0,
+              "planet": 0.405,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 16.83995,
+        "transit_depth_ppm": 1052.7,
+        "transit_duration_hours": 1.92,
+        "transit_epoch_btjd": 1571.424,
+        "rp_over_rs": 0.03245,
+        "a_over_rs": 51.87,
+        "planet_radius_earth": 1.89,
+        "semi_major_axis_au": 0.1286,
+        "residual_rms_ppm": 974.2,
+        "reduced_chi2": 1.001,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.508,
+        "hz_outer_au": 0.732
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-1431",
+      "mission": "['TESS Sector 15']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:51:23.336691",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.93656003,
+        "mass_solar": 1.0
+      },
+      "n_points": 16982,
+      "duration_days": 26.0,
+      "scatter_ppm": 378.1,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 79.084,
+          "fap_proxy": 3.96,
+          "best_period_days": 2.65222,
+          "transit_depth_ppm": 300.7,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1712.663,
+          "n_transits_expected": 9,
+          "noise_ppm": 373.7,
+          "snr_stacked": 2.41,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.549,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.549,
+              "eclipsing_binary": 0.027,
+              "planet": 0.391,
+              "starspot": 0.033
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 13.862,
+          "fap_proxy": 1.5,
+          "best_period_days": 2.64572,
+          "transit_depth_ppm": 124.8,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1714.003,
+          "n_transits_expected": 9,
+          "noise_ppm": 364.5,
+          "snr_stacked": 1.03,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.588,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.588,
+              "eclipsing_binary": 0.0,
+              "planet": 0.407,
+              "starspot": 0.005
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 14.046,
+          "fap_proxy": 1.52,
+          "best_period_days": 13.56285,
+          "transit_depth_ppm": 180.0,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1711.767,
+          "n_transits_expected": 1,
+          "noise_ppm": 360.5,
+          "snr_stacked": 0.5,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.667,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.667,
+              "eclipsing_binary": 0.0,
+              "planet": 0.333,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": null,
+      "plots": []
+    },
+    {
+      "target": "TOI-1518",
+      "mission": "['TESS Sector 57']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:52:02.824673",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.82240999,
+        "mass_solar": 1.0
+      },
+      "n_points": 103900,
+      "duration_days": 28.8,
+      "scatter_ppm": 1210.5,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 311.223,
+          "fap_proxy": 3.59,
+          "best_period_days": 5.70824,
+          "transit_depth_ppm": 1633.1,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 2856.3166,
+          "n_transits_expected": 5,
+          "noise_ppm": 1205.0,
+          "snr_stacked": 3.03,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.488,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.488,
+              "eclipsing_binary": 0.077,
+              "planet": 0.289,
+              "starspot": 0.146
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 244.787,
+          "fap_proxy": 2.79,
+          "best_period_days": 5.70824,
+          "transit_depth_ppm": 1547.0,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 2854.4126,
+          "n_transits_expected": 5,
+          "noise_ppm": 1195.3,
+          "snr_stacked": 2.89,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.7,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.7,
+              "eclipsing_binary": 0.001,
+              "planet": 0.293,
+              "starspot": 0.006
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 221.189,
+          "fap_proxy": 2.87,
+          "best_period_days": 5.70824,
+          "transit_depth_ppm": 1447.4,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 2858.2206,
+          "n_transits_expected": 5,
+          "noise_ppm": 1186.1,
+          "snr_stacked": 2.73,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.698,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.698,
+              "eclipsing_binary": 0.001,
+              "planet": 0.293,
+              "starspot": 0.009
+            }
+          }
+        }
+      ],
+      "transit_fit": null,
+      "plots": []
+    },
+    {
+      "target": "TOI-811",
+      "mission": "['TESS Sector 32']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:58:55.675507",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.24117994,
+        "mass_solar": 1.0
+      },
+      "n_points": 17484,
+      "duration_days": 25.9,
+      "scatter_ppm": 1779.6,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 230.845,
+          "fap_proxy": 4.22,
+          "best_period_days": 19.38229,
+          "transit_depth_ppm": 8344.3,
+          "transit_duration_hrs": 3.84,
+          "transit_epoch_btjd": 2193.5275,
+          "n_transits_expected": 1,
+          "noise_ppm": 1752.8,
+          "snr_stacked": 4.76,
+          "significance": "Marginal (SNR 4-7)",
+          "classification": {
+            "label": "planet",
+            "description": "Likely Planet Transit",
+            "color": "#4ade80",
+            "confidence": 0.781,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.189,
+              "eclipsing_binary": 0.011,
+              "planet": 0.781,
+              "starspot": 0.019
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 15.021,
+          "fap_proxy": 1.61,
+          "best_period_days": 5.20107,
+          "transit_depth_ppm": 889.2,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 2175.7915,
+          "n_transits_expected": 4,
+          "noise_ppm": 1746.4,
+          "snr_stacked": 1.02,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.602,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.602,
+              "eclipsing_binary": 0.001,
+              "planet": 0.397,
+              "starspot": 0.0
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 13.635,
+          "fap_proxy": 1.55,
+          "best_period_days": 8.64071,
+          "transit_depth_ppm": 977.4,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 2179.0555,
+          "n_transits_expected": 2,
+          "noise_ppm": 1736.0,
+          "snr_stacked": 0.8,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.558,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.558,
+              "eclipsing_binary": 0.0,
+              "planet": 0.439,
+              "starspot": 0.003
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 19.38229,
+        "transit_depth_ppm": 8344.3,
+        "transit_duration_hours": 3.84,
+        "transit_epoch_btjd": 2193.5275,
+        "rp_over_rs": 0.09135,
+        "a_over_rs": 24.46,
+        "planet_radius_earth": 12.37,
+        "semi_major_axis_au": 0.1412,
+        "residual_rms_ppm": 2181.7,
+        "reduced_chi2": 1.008,
+        "in_habitable_zone": false,
+        "hz_inner_au": 1.183,
+        "hz_outer_au": 1.705
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-1233",
+      "mission": "['TESS Sector 10']",
+      "status": "ok",
+      "timestamp": "2026-06-28T03:59:39.580054",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.864173,
+        "mass_solar": 1.0
+      },
+      "n_points": 15480,
+      "duration_days": 24.6,
+      "scatter_ppm": 547.4,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 86.619,
+          "fap_proxy": 1.29,
+          "best_period_days": 15.2079,
+          "transit_depth_ppm": 552.6,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1571.3423,
+          "n_transits_expected": 1,
+          "noise_ppm": 541.6,
+          "snr_stacked": 1.02,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.688,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.688,
+              "eclipsing_binary": 0.0,
+              "planet": 0.306,
+              "starspot": 0.007
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 44.119,
+          "fap_proxy": 1.33,
+          "best_period_days": 13.1142,
+          "transit_depth_ppm": 386.5,
+          "transit_duration_hrs": 2.88,
+          "transit_epoch_btjd": 1572.3903,
+          "n_transits_expected": 1,
+          "noise_ppm": 537.3,
+          "snr_stacked": 0.72,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.705,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.705,
+              "eclipsing_binary": 0.0,
+              "planet": 0.29,
+              "starspot": 0.005
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 22.362,
+          "fap_proxy": 1.84,
+          "best_period_days": 3.7966,
+          "transit_depth_ppm": 192.5,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1572.1063,
+          "n_transits_expected": 6,
+          "noise_ppm": 531.6,
+          "snr_stacked": 0.89,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.687,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.687,
+              "eclipsing_binary": 0.0,
+              "planet": 0.31,
+              "starspot": 0.003
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 15.2079,
+        "transit_depth_ppm": 552.6,
+        "transit_duration_hours": 2.88,
+        "transit_epoch_btjd": 1571.3423,
+        "rp_over_rs": 0.02351,
+        "a_over_rs": 29.89,
+        "planet_radius_earth": 2.22,
+        "semi_major_axis_au": 0.1201,
+        "residual_rms_ppm": 551.8,
+        "reduced_chi2": 1.001,
+        "in_habitable_zone": false,
+        "hz_inner_au": 0.824,
+        "hz_outer_au": 1.187
+      },
+      "plots": []
+    },
+    {
+      "target": "TOI-1410",
+      "mission": "['TESS Sector 16']",
+      "status": "ok",
+      "timestamp": "2026-06-28T04:00:17.883088",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 0.77874899,
+        "mass_solar": 1.0
+      },
+      "n_points": 13915,
+      "duration_days": 23.0,
+      "scatter_ppm": 1236.0,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 137.437,
+          "fap_proxy": 6.52,
+          "best_period_days": 1.21524,
+          "transit_depth_ppm": 961.7,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1739.7403,
+          "n_transits_expected": 18,
+          "noise_ppm": 1216.7,
+          "snr_stacked": 3.35,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.508,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.508,
+              "eclipsing_binary": 0.013,
+              "planet": 0.334,
+              "starspot": 0.145
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 11.927,
+          "fap_proxy": 1.21,
+          "best_period_days": 13.7124,
+          "transit_depth_ppm": 547.7,
+          "transit_duration_hrs": 1.92,
+          "transit_epoch_btjd": 1738.7523,
+          "n_transits_expected": 1,
+          "noise_ppm": 1184.7,
+          "snr_stacked": 0.46,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.689,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.689,
+              "eclipsing_binary": 0.0,
+              "planet": 0.308,
+              "starspot": 0.002
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 10.411,
+          "fap_proxy": 1.33,
+          "best_period_days": 7.43781,
+          "transit_depth_ppm": 576.0,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1740.4763,
+          "n_transits_expected": 3,
+          "noise_ppm": 1175.6,
+          "snr_stacked": 0.85,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.599,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.599,
+              "eclipsing_binary": 0.0,
+              "planet": 0.398,
+              "starspot": 0.003
+            }
+          }
+        }
+      ],
+      "transit_fit": null,
+      "plots": []
+    },
+    {
+      "target": "TOI-257",
+      "mission": "['TESS Sector 03']",
+      "status": "ok",
+      "timestamp": "2026-06-28T04:00:58.143415",
+      "error": null,
+      "stellar_params": {
+        "radius_solar": 1.76557004,
+        "mass_solar": 1.0
+      },
+      "n_points": 13390,
+      "duration_days": 20.3,
+      "scatter_ppm": 254.1,
+      "n_signals_found": 3,
+      "signals": [
+        {
+          "signal_number": 1,
+          "bls_power": 63.039,
+          "fap_proxy": 1.0,
+          "best_period_days": 18.33545,
+          "transit_depth_ppm": 713.4,
+          "transit_duration_hrs": 3.84,
+          "transit_epoch_btjd": 1404.1025,
+          "n_transits_expected": 1,
+          "noise_ppm": 252.5,
+          "snr_stacked": 2.82,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.8,
+            "confidence_level": "Moderate",
+            "all_probabilities": {
+              "blend": 0.8,
+              "eclipsing_binary": 0.0,
+              "planet": 0.199,
+              "starspot": 0.001
+            }
+          }
+        },
+        {
+          "signal_number": 2,
+          "bls_power": 26.71,
+          "fap_proxy": 1.05,
+          "best_period_days": 14.10253,
+          "transit_depth_ppm": 278.3,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1390.1545,
+          "n_transits_expected": 1,
+          "noise_ppm": 252.2,
+          "snr_stacked": 1.1,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.618,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.618,
+              "eclipsing_binary": 0.0,
+              "planet": 0.38,
+              "starspot": 0.002
+            }
+          }
+        },
+        {
+          "signal_number": 3,
+          "bls_power": 11.887,
+          "fap_proxy": 1.41,
+          "best_period_days": 13.34178,
+          "transit_depth_ppm": 161.0,
+          "transit_duration_hrs": 0.96,
+          "transit_epoch_btjd": 1388.6825,
+          "n_transits_expected": 1,
+          "noise_ppm": 251.1,
+          "snr_stacked": 0.64,
+          "significance": "Noise (SNR<4)",
+          "classification": {
+            "label": "blend",
+            "description": "Contaminated Blend",
+            "color": "#a78bfa",
+            "confidence": 0.612,
+            "confidence_level": "Low",
+            "all_probabilities": {
+              "blend": 0.612,
+              "eclipsing_binary": 0.0,
+              "planet": 0.388,
+              "starspot": 0.0
+            }
+          }
+        }
+      ],
+      "transit_fit": {
+        "period_days": 18.33545,
+        "transit_depth_ppm": 713.4,
+        "transit_duration_hours": 3.84,
+        "transit_epoch_btjd": 1404.1025,
+        "rp_over_rs": 0.02671,
+        "a_over_rs": 16.57,
+        "planet_radius_earth": 5.14,
+        "semi_major_axis_au": 0.1361,
+        "residual_rms_ppm": 254.1,
+        "reduced_chi2": 1.0,
+        "in_habitable_zone": false,
+        "hz_inner_au": 1.683,
+        "hz_outer_au": 2.425
+      },
+      "plots": []
+    }
+  ]
+}
