@@ -26,6 +26,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .sdot.live{background:var(--green);box-shadow:0 0 6px var(--green);}
 .stxt{font-family:var(--mono);font-size:10px;color:var(--text2);}
 
+/* Tab bar in header */
+.tab-bar{display:flex;gap:2px;margin-left:24px;}
+.tab{font-family:var(--mono);font-size:10px;padding:5px 14px;border-radius:3px;cursor:pointer;color:var(--text3);transition:all .15s;border:1px solid transparent;}
+.tab:hover{color:var(--text2);}
+.tab.active{background:var(--bg3);color:var(--accent);border-color:var(--border2);}
+
 /* Layout */
 .layout{display:grid;grid-template-columns:280px 1fr;height:calc(100vh - 48px);}
 
@@ -33,8 +39,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .sidebar{border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;overflow:hidden;}
 .sb-sec{padding:14px;border-bottom:1px solid var(--border);}
 .sb-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:var(--text3);text-transform:uppercase;margin-bottom:9px;}
-
-/* Search */
 .srow{display:flex;gap:6px;}
 .sinput{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:var(--mono);font-size:11px;padding:7px 9px;outline:none;transition:border-color .2s;}
 .sinput:focus{border-color:var(--accent);}
@@ -44,16 +48,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .btn-sm{padding:4px 9px;font-size:9px;}
 .btn-outline{background:transparent;color:var(--accent);border:1px solid var(--border2);font-size:9px;}
 .btn-outline:hover{border-color:var(--accent);}
-
-/* Quick targets */
 .qtargets{display:flex;flex-wrap:wrap;gap:5px;}
 .qbtn{background:var(--bg3);border:1px solid var(--border2);border-radius:3px;color:var(--text2);font-family:var(--mono);font-size:9px;padding:4px 7px;cursor:pointer;transition:all .15s;}
 .qbtn:hover{border-color:var(--accent);color:var(--accent);}
-
-/* Retrain */
 .retrain-row{display:flex;gap:6px;margin-top:6px;}
-
-/* History list */
 .hlist{flex:1;overflow-y:auto;}
 .hlist::-webkit-scrollbar{width:3px;}
 .hlist::-webkit-scrollbar-thumb{background:var(--border2);}
@@ -71,13 +69,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .hi-sub{font-family:var(--mono);font-size:9px;color:var(--text3);}
 .empty-list{padding:28px 14px;text-align:center;color:var(--text3);font-size:11px;line-height:1.8;}
 
-/* Main */
+/* Main panel */
 .main{overflow-y:auto;background:var(--bg);}
 .main::-webkit-scrollbar{width:4px;}
 .main::-webkit-scrollbar-thumb{background:var(--border2);}
 
+/* Tab panels */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
 /* Welcome */
-.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text3);text-align:center;padding:40px;}
+.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:calc(100vh - 120px);color:var(--text3);text-align:center;padding:40px;}
 .wt{font-family:var(--mono);font-size:13px;color:var(--text2);margin-bottom:8px;letter-spacing:.1em;}
 .ws{font-size:12px;line-height:1.9;max-width:360px;}
 
@@ -93,8 +95,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 
 /* Dashboard */
 .dash{padding:22px 26px;}
-
-/* Star header */
 .star-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
 .star-name{font-family:var(--mono);font-size:20px;font-weight:700;letter-spacing:.04em;}
 .star-meta{font-size:11px;color:var(--text2);margin-top:3px;}
@@ -126,44 +126,70 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .sig-label{font-family:var(--mono);font-size:12px;font-weight:700;}
 .sig-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
 .sig-conf{font-family:var(--mono);font-size:10px;color:var(--text2);}
-
-/* Params grid inside signal */
 .pgrid{padding:13px 15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:11px;}
 .pm-lbl{font-family:var(--mono);font-size:8px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
 .pm-val{font-family:var(--mono);font-size:13px;font-weight:700;}
-
-/* Bars */
 .bar-row{padding:5px 15px;display:flex;align-items:center;gap:10px;}
 .bar-lbl{font-family:var(--mono);font-size:9px;color:var(--text3);min-width:85px;}
 .bar-bg{flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:3px;transition:width .5s ease;}
 .bar-val{font-family:var(--mono);font-size:9px;color:var(--text2);min-width:38px;text-align:right;}
-
-/* Prob bars grid */
 .prob-grid{padding:10px 15px 13px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:7px;}
 .prob-row{display:flex;align-items:center;gap:7px;}
 .prob-cls{font-family:var(--mono);font-size:9px;color:var(--text3);min-width:65px;}
 .prob-bg{flex:1;height:4px;background:var(--bg);border-radius:2px;overflow:hidden;}
 .prob-fill{height:100%;border-radius:2px;}
 .prob-pct{font-family:var(--mono);font-size:9px;color:var(--text2);min-width:30px;text-align:right;}
-
-/* HZ badge */
 .hz-yes{display:inline-block;background:rgba(61,214,140,.15);color:var(--green);font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;}
 .hz-no{display:inline-block;background:rgba(61,70,90,.2);color:var(--text3);font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;}
-
-/* Plots */
 .plot-card{background:var(--bg2);border:1px solid var(--border);border-radius:7px;overflow:hidden;margin-bottom:12px;}
 .plot-ttl{padding:9px 13px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);}
 .plot-img{width:100%;display:block;}
-
-/* Error */
 .err-box{background:rgba(240,96,96,.08);border:1px solid rgba(240,96,96,.3);border-radius:6px;padding:13px 17px;font-family:var(--mono);font-size:11px;color:var(--red);margin:20px 26px;}
-
-/* Stellar info */
 .stellar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;}
 .st-item{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:9px 12px;}
 .st-lbl{font-family:var(--mono);font-size:8px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
 .st-val{font-family:var(--mono);font-size:12px;color:var(--text);}
+
+/* ── Batch results tab ───────────────────────────────────────────────────── */
+.batch-wrap{padding:22px 26px;}
+.batch-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.batch-title{font-family:var(--mono);font-size:16px;font-weight:700;}
+.batch-meta{font-size:11px;color:var(--text2);margin-top:3px;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px;margin-bottom:20px;}
+.sm-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:11px 13px;}
+.sm-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-bottom:5px;}
+.sm-val{font-family:var(--mono);font-size:20px;font-weight:700;}
+/* Candidate highlight cards */
+.cand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:20px;}
+.cand-card{background:var(--bg2);border:1px solid rgba(61,214,140,.3);border-radius:7px;padding:13px 15px;cursor:pointer;transition:border-color .2s;}
+.cand-card:hover{border-color:var(--green);}
+.cand-name{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px;}
+.cand-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;color:var(--text2);padding:2px 0;}
+.cand-key{color:var(--text3);}
+/* Full results table */
+.rtable-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:7px;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+thead tr{background:var(--bg3);border-bottom:1px solid var(--border);}
+th{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;padding:9px 12px;text-align:left;white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s;}
+tbody tr:hover{background:var(--bg3);}
+tbody tr:last-child{border-bottom:none;}
+td{padding:8px 12px;font-family:var(--mono);font-size:10px;color:var(--text2);}
+td.target-cell{font-weight:700;color:var(--text);}
+td.snr-high{color:var(--green);}
+td.snr-mid{color:var(--amber);}
+td.snr-low{color:var(--red);}
+.lbl-pill{font-family:var(--mono);font-size:8px;padding:2px 7px;border-radius:2px;font-weight:700;display:inline-block;}
+/* sort arrow */
+th.sortable{cursor:pointer;user-select:none;}
+th.sortable:hover{color:var(--text2);}
+th .arrow{margin-left:4px;opacity:.4;}
+th.asc .arrow::after{content:'▲';}
+th.desc .arrow::after{content:'▼';}
+th:not(.asc):not(.desc) .arrow::after{content:'⇅';}
+/* batch load btn */
+.batch-load-btn{display:flex;align-items:center;gap:8px;margin-bottom:18px;}
 </style>
 </head>
 <body>
@@ -171,6 +197,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 <div class="hdr">
   <div class="hdr-logo">ISRO · TESS</div>
   <div class="hdr-title">Exoplanet Detection Pipeline</div>
+  <div class="tab-bar">
+    <div class="tab active" id="tab-single" onclick="switchTab('single')">Single Star</div>
+    <div class="tab" id="tab-batch" onclick="switchTab('batch')">Batch Results</div>
+  </div>
   <div class="hdr-right">
     <span class="stxt"><span class="sdot" id="sdot"></span><span id="stxt">Idle</span></span>
   </div>
@@ -178,7 +208,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 
 <div class="layout">
 
-  <!-- Sidebar -->
+  <!-- ── Sidebar ── -->
   <div class="sidebar">
     <div class="sb-sec">
       <div class="sb-lbl">Analyse Target</div>
@@ -198,8 +228,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
         <div class="qbtn" onclick="run('55 Cnc')">55 Cnc</div>
         <div class="qbtn" onclick="run('HD 209458')">HD 209458</div>
         <div class="qbtn" onclick="run('K2-18')">K2-18</div>
-        <div class="qbtn" onclick="run('GJ 1132')">GJ 1132</div>
         <div class="qbtn" onclick="run('LHS 1140')">LHS 1140</div>
+        <div class="qbtn" onclick="run('LTT 9779')">LTT 9779</div>
       </div>
     </div>
 
@@ -218,28 +248,57 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
     </div>
   </div>
 
-  <!-- Main -->
+  <!-- ── Main panel ── -->
   <div class="main" id="main">
-    <div class="welcome" id="welcome">
-      <div class="wt">TESS EXOPLANET DETECTION PIPELINE</div>
-      <div class="ws">
-        Enter any star name to run the full science pipeline —
-        BLS period search · AI transit classification ·
-        Batman model fitting · Habitability assessment
+
+    <!-- TAB 1: Single star -->
+    <div class="tab-panel active" id="panel-single">
+      <div class="welcome" id="welcome">
+        <div class="wt">TESS EXOPLANET DETECTION PIPELINE</div>
+        <div class="ws">
+          Enter any star name or click a quick target to run the full science pipeline —
+          BLS period search · AI transit classification ·
+          Batman model fitting · Habitability assessment
+        </div>
+      </div>
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div class="lstep" id="lstep">Connecting…</div>
+        <div class="steps" id="steps"></div>
+      </div>
+      <div id="errbox" style="display:none"></div>
+      <div id="dash" style="display:none"></div>
+    </div>
+
+    <!-- TAB 2: Batch results -->
+    <div class="tab-panel" id="panel-batch">
+      <div class="batch-wrap">
+        <div class="batch-hdr">
+          <div>
+            <div class="batch-title">Batch Pipeline Results</div>
+            <div class="batch-meta" id="batch-meta">Load results.json from batch_runner.py</div>
+          </div>
+          <button class="btn" onclick="loadBatchResults()">↺ Refresh from results.json</button>
+        </div>
+        <div id="batch-content">
+          <div style="color:var(--text3);font-family:var(--mono);font-size:11px;padding:40px;text-align:center;">
+            Click "Refresh" to load batch results,<br>or run: <span style="color:var(--accent)">python batch_runner.py</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <div class="lstep" id="lstep">Connecting…</div>
-      <div class="steps" id="steps"></div>
-    </div>
-    <div id="errbox" style="display:none"></div>
-    <div id="dash" style="display:none"></div>
-  </div>
 
+  </div>
 </div>
 
 <script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const history  = {};
+let stepTimer  = null;
+let batchData  = null;
+let sortCol    = 'snr';
+let sortDir    = -1;  // -1 = desc
+
 const STEPS = [
   "Searching MAST archive",
   "Downloading TESS photometry",
@@ -247,35 +306,47 @@ const STEPS = [
   "Running BLS period search (Signal 1)",
   "Extracting 17 classification features",
   "Running AI Random Forest classifier",
-  "Masking Signal 1, searching Signal 2",
+  "Masking Signal 1 — searching Signal 2",
   "Fitting batman transit model",
   "Computing habitable zone",
   "Generating diagnostic plots",
 ];
 
-const history = {};   // target → result
-let   stepTimer = null;
-
-function setStatus(txt, live=false) {
-  document.getElementById('stxt').textContent = txt;
-  document.getElementById('sdot').className = 'sdot' + (live?' live':'');
+// ── Tab switching ─────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (tab === 'batch' && !batchData) loadBatchResults();
 }
 
+// ── Status ────────────────────────────────────────────────────────────────────
+function setStatus(txt, live=false) {
+  document.getElementById('stxt').textContent = txt;
+  document.getElementById('sdot').className = 'sdot' + (live ? ' live' : '');
+}
+
+// ── Loading steps ─────────────────────────────────────────────────────────────
 function startSteps(target) {
-  document.getElementById('welcome').style.display = 'none';
-  document.getElementById('dash').style.display    = 'none';
-  document.getElementById('errbox').style.display  = 'none';
+  document.getElementById('welcome').style.display  = 'none';
+  document.getElementById('dash').style.display     = 'none';
+  document.getElementById('errbox').style.display   = 'none';
   document.getElementById('loading').classList.add('on');
   document.getElementById('lstep').textContent = `Analysing ${target}…`;
   const el = document.getElementById('steps');
-  el.innerHTML = STEPS.map((s,i)=>
+  el.innerHTML = STEPS.map((s,i) =>
     `<div class="sitem" id="si${i}"><span style="min-width:12px">○</span>${s}</div>`
   ).join('');
   let i = 0;
-  stepTimer = setInterval(()=>{
-    if(i>0){const p=document.getElementById(`si${i-1}`);if(p){p.className='sitem done';p.querySelector('span').textContent='✓';}}
-    const c=document.getElementById(`si${i}`);if(c){c.className='sitem cur';c.querySelector('span').textContent='›';}
-    i=(i+1)%STEPS.length;
+  stepTimer = setInterval(() => {
+    if (i > 0) {
+      const p = document.getElementById(`si${i-1}`);
+      if (p) { p.className='sitem done'; p.querySelector('span').textContent='✓'; }
+    }
+    const c = document.getElementById(`si${i}`);
+    if (c) { c.className='sitem cur'; c.querySelector('span').textContent='›'; }
+    i = (i+1) % STEPS.length;
   }, 1400);
 }
 
@@ -284,34 +355,35 @@ function stopSteps() {
   document.getElementById('loading').classList.remove('on');
 }
 
+// ── Sidebar history ───────────────────────────────────────────────────────────
 function addHistory(target, data) {
   const list = document.getElementById('hlist');
   const empty = list.querySelector('.empty-list');
-  if(empty) empty.remove();
-  const old = document.getElementById('hi_'+cssid(target));
-  if(old) old.remove();
+  if (empty) empty.remove();
+  const old = document.getElementById('hi_' + cssid(target));
+  if (old) old.remove();
 
-  let badgeClass='bl', badgeText='RUNNING';
-  if(data && !data.error && data.signals && data.signals.length>0){
+  let badgeClass = 'bl', badgeText = 'RUNNING';
+  if (data && !data.error && data.signals && data.signals.length > 0) {
     const lbl = data.signals[0].classification.label;
-    if(lbl==='planet')           {badgeClass='bp';badgeText='PLANET';}
-    else if(lbl==='eclipsing_binary'){badgeClass='be';badgeText='EB';}
-    else if(lbl==='starspot')    {badgeClass='bs';badgeText='SPOT';}
-    else                         {badgeClass='bb';badgeText='FP';}
-  } else if(data && data.error) {
+    if (lbl === 'planet')            { badgeClass='bp'; badgeText='PLANET'; }
+    else if (lbl === 'eclipsing_binary') { badgeClass='be'; badgeText='EB'; }
+    else if (lbl === 'starspot')     { badgeClass='bs'; badgeText='SPOT'; }
+    else                             { badgeClass='bb'; badgeText='FP'; }
+  } else if (data && data.error) {
     badgeClass='be'; badgeText='ERR';
   }
 
   let sub = 'analysing…';
-  if(data && !data.error && data.signals && data.signals.length>0){
+  if (data && !data.error && data.signals && data.signals.length > 0) {
     const s = data.signals[0];
     sub = `P=${s.best_period_days}d  SNR=${s.snr_stacked}  n=${data.n_signals_found} sig`;
   }
 
   const div = document.createElement('div');
   div.className = 'hitem';
-  div.id = 'hi_'+cssid(target);
-  div.onclick = ()=>{ if(history[target]) renderDash(target, history[target]); };
+  div.id = 'hi_' + cssid(target);
+  div.onclick = () => { if (history[target]) { switchTab('single'); renderDash(target, history[target]); } };
   div.innerHTML = `
     <div class="hi-top">
       <div class="hi-name">${target}</div>
@@ -323,20 +395,22 @@ function addHistory(target, data) {
 }
 
 function setActive(target) {
-  document.querySelectorAll('.hitem').forEach(e=>e.classList.remove('active'));
-  const el = document.getElementById('hi_'+cssid(target));
-  if(el) el.classList.add('active');
+  document.querySelectorAll('.hitem').forEach(e => e.classList.remove('active'));
+  const el = document.getElementById('hi_' + cssid(target));
+  if (el) el.classList.add('active');
 }
 
-function cssid(s){ return s.replace(/[^a-zA-Z0-9]/g,'_'); }
+function cssid(s) { return s.replace(/[^a-zA-Z0-9]/g, '_'); }
 
+// ── Single star pipeline ──────────────────────────────────────────────────────
 async function doAnalyse() {
   const v = document.getElementById('sinput').value.trim();
-  if(!v) return;
+  if (!v) return;
   run(v);
 }
 
 async function run(target) {
+  switchTab('single');
   document.getElementById('sinput').value = target;
   document.getElementById('abtn').disabled = true;
   setStatus(`Analysing ${target}`, true);
@@ -345,9 +419,9 @@ async function run(target) {
 
   try {
     const res  = await fetch('/analyse', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({target})
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ target })
     });
     const data = await res.json();
     stopSteps();
@@ -361,10 +435,11 @@ async function run(target) {
     document.getElementById('abtn').disabled = false;
     setStatus('Error');
     showErr('Pipeline server not responding. Is uvicorn running?');
-    addHistory(target, {error: 'connection failed'});
+    addHistory(target, { error: 'connection failed' });
   }
 }
 
+// ── Retrain ───────────────────────────────────────────────────────────────────
 async function doRetrain() {
   const path = document.getElementById('csvpath').value.trim() || 'training_features.csv';
   const el   = document.getElementById('retrain-status');
@@ -372,74 +447,82 @@ async function doRetrain() {
   el.style.color = 'var(--accent)';
   try {
     const res  = await fetch('/retrain', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({csv_path: path})
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ csv_path: path })
     });
     const data = await res.json();
-    if(data.error) { el.textContent = 'Error: '+data.error; el.style.color='var(--red)'; }
-    else {
-      el.textContent = `✓ Retrained on ${data.n_samples} samples`;
-      el.style.color = 'var(--green)';
-    }
+    if (data.error) { el.textContent = 'Error: '+data.error; el.style.color='var(--red)'; }
+    else { el.textContent = `✓ Retrained on ${data.n_samples} samples`; el.style.color='var(--green)'; }
   } catch(e) {
-    el.textContent = 'Failed to connect.';
-    el.style.color = 'var(--red)';
+    el.textContent = 'Failed to connect.'; el.style.color = 'var(--red)';
   }
 }
 
+// ── Error display ─────────────────────────────────────────────────────────────
 function showErr(msg) {
   document.getElementById('errbox').style.display = 'block';
   document.getElementById('errbox').innerHTML = `<div class="err-box">⚠ ${msg}</div>`;
-  document.getElementById('dash').style.display = 'none';
+  document.getElementById('dash').style.display  = 'none';
 }
 
+// ── Colour helpers ────────────────────────────────────────────────────────────
 function snrColor(v) {
-  if(v>=15) return 'var(--green)';
-  if(v>=7)  return 'var(--green)';
-  if(v>=4)  return 'var(--amber)';
+  if (v >= 7)  return 'var(--green)';
+  if (v >= 4)  return 'var(--amber)';
   return 'var(--red)';
 }
-
 function labelColor(lbl) {
-  if(lbl==='planet')            return 'var(--green)';
-  if(lbl==='eclipsing_binary')  return 'var(--red)';
-  if(lbl==='starspot')          return 'var(--amber)';
+  if (lbl === 'planet')           return 'var(--green)';
+  if (lbl === 'eclipsing_binary') return 'var(--red)';
+  if (lbl === 'starspot')         return 'var(--amber)';
   return 'var(--purple)';
 }
-
 function sigCardClass(lbl) {
-  if(lbl==='planet')            return 'planet-sig';
-  if(lbl==='eclipsing_binary')  return 'eb-sig';
-  if(lbl==='starspot')          return 'spot-sig';
+  if (lbl === 'planet')           return 'planet-sig';
+  if (lbl === 'eclipsing_binary') return 'eb-sig';
+  if (lbl === 'starspot')         return 'spot-sig';
   return '';
 }
+function badgeCls(lbl) {
+  if (lbl === 'planet')           return 'bp';
+  if (lbl === 'eclipsing_binary') return 'be';
+  if (lbl === 'starspot')         return 'bs';
+  return 'bb';
+}
+function badgeTxt(lbl) {
+  if (lbl === 'planet')           return 'PLANET';
+  if (lbl === 'eclipsing_binary') return 'EB';
+  if (lbl === 'starspot')         return 'SPOT';
+  return 'FP';
+}
 
+// ── Single-star dashboard render ──────────────────────────────────────────────
 function renderDash(target, data) {
   setActive(target);
-  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('welcome').style.display   = 'none';
   document.getElementById('loading').classList.remove('on');
-  document.getElementById('errbox').style.display  = 'none';
+  document.getElementById('errbox').style.display    = 'none';
   const dash = document.getElementById('dash');
   dash.style.display = 'block';
 
-  if(data.error) { showErr(data.error + (data.trace?'<br><small>'+data.trace+'</small>':'')); return; }
+  if (data.error) {
+    showErr(data.error + (data.trace ? '<br><small>'+data.trace+'</small>' : ''));
+    return;
+  }
 
-  const stellar = data.stellar_params || {radius_solar:1.0, mass_solar:1.0};
+  const stellar = data.stellar_params || { radius_solar:1.0, mass_solar:1.0 };
   const sigs    = data.signals || [];
   const s0      = sigs[0] || {};
   const bat0    = s0.batman_fit || {};
   const cls0    = s0.classification || {};
-  const probs   = cls0.all_probabilities || {};
+  const snr0    = s0.snr_stacked || 0;
+  const snrC    = snrColor(snr0);
+  const snrCls  = snr0>=7?'good':snr0>=4?'warn':'bad';
 
-  const snr0 = s0.snr_stacked || 0;
-  const snrC = snrColor(snr0);
-
-  // ── Overall metric cards ──────────────────────────────────────────────────
-  const snrClass = snr0>=7?'good':snr0>=4?'warn':'bad';
   const metricsHTML = `
     <div class="mgrid">
-      <div class="mc ${snrClass}">
+      <div class="mc ${snrCls}">
         <div class="mc-lbl">Stacked SNR</div>
         <div class="mc-val" style="color:${snrC}">${snr0||'—'}</div>
         <div class="mc-unit">${s0.significance||'—'}</div>
@@ -469,9 +552,9 @@ function renderDash(target, data) {
         <div class="mc-val">${data.scatter_ppm||'—'}</div>
         <div class="mc-unit">ppm</div>
       </div>
-      <div class="mc ${bat0.planet_radius_earth && bat0.planet_radius_earth<4?'good':''}">
+      <div class="mc ${bat0.planet_radius_earth&&bat0.planet_radius_earth<4?'good':''}">
         <div class="mc-lbl">Planet Radius</div>
-        <div class="mc-val ${bat0.planet_radius_earth && bat0.planet_radius_earth<4?'c-green':''}">${bat0.planet_radius_earth||'—'}</div>
+        <div class="mc-val ${bat0.planet_radius_earth&&bat0.planet_radius_earth<4?'c-green':''}">${bat0.planet_radius_earth||'—'}</div>
         <div class="mc-unit">R⊕</div>
       </div>
       <div class="mc ${bat0.in_habitable_zone?'good':''}">
@@ -481,7 +564,6 @@ function renderDash(target, data) {
       </div>
     </div>`;
 
-  // ── Raw light curve plot ──────────────────────────────────────────────────
   const lcPlot = data.plot_lc ? `
     <div class="sec">Light Curve</div>
     <div class="plot-card">
@@ -489,8 +571,7 @@ function renderDash(target, data) {
       <img class="plot-img" src="data:image/png;base64,${data.plot_lc}">
     </div>` : '';
 
-  // ── Signal cards ──────────────────────────────────────────────────────────
-  const sigsHTML = sigs.map((sig,idx) => {
+  const sigsHTML = sigs.map(sig => {
     const cls  = sig.classification || {};
     const bat  = sig.batman_fit || {};
     const prbs = cls.all_probabilities || {};
@@ -498,16 +579,16 @@ function renderDash(target, data) {
     const lc   = labelColor(lbl);
     const sc   = sigCardClass(lbl);
     const snr  = sig.snr_stacked || 0;
-    const snrPct = Math.min(100,(snr/20)*100);
-    const confPct = Math.min(100,(cls.confidence||0)*100);
-    const csPct   = Math.min(100,(cls.combined_score||0)*100);
+    const snrPct  = Math.min(100, (snr/20)*100);
+    const confPct = Math.min(100, (cls.confidence||0)*100);
+    const csPct   = Math.min(100, (cls.combined_score||0)*100);
 
     const probsHTML = Object.keys(prbs).length ? `
       <div class="prob-grid">
-        ${['planet','eclipsing_binary','starspot','blend'].map(k=>{
-          const v=prbs[k]||0;
-          const pc=['planet','eclipsing_binary','starspot','blend'];
-          const col=['var(--green)','var(--red)','var(--amber)','var(--purple)'][pc.indexOf(k)];
+        ${['planet','eclipsing_binary','starspot','blend'].map(k => {
+          const v = prbs[k] || 0;
+          const col = ['var(--green)','var(--red)','var(--amber)','var(--purple)'][
+            ['planet','eclipsing_binary','starspot','blend'].indexOf(k)];
           return `<div class="prob-row">
             <div class="prob-cls">${k==='eclipsing_binary'?'Ecl. Binary':k}</div>
             <div class="prob-bg"><div class="prob-fill" style="width:${Math.round(v*100)}%;background:${col}"></div></div>
@@ -523,12 +604,13 @@ function renderDash(target, data) {
           <div><div class="pm-lbl">Rp / R★</div><div class="pm-val">${bat.rp_over_rs||'—'}</div></div>
           <div><div class="pm-lbl">a / R★</div><div class="pm-val">${bat.a_over_rs||'—'}</div></div>
           <div><div class="pm-lbl">a (AU)</div><div class="pm-val">${bat.semi_major_axis_au||'—'}</div></div>
+          <div><div class="pm-lbl">Planet Radius</div><div class="pm-val">${bat.planet_radius_earth||'—'} R⊕</div></div>
           <div><div class="pm-lbl">Residual RMS</div><div class="pm-val">${bat.residual_rms_ppm||'—'} ppm</div></div>
           <div><div class="pm-lbl">χ² reduced</div><div class="pm-val">${bat.reduced_chi2||'—'}</div></div>
           <div><div class="pm-lbl">Habitable Zone</div>
             <div class="pm-val">${bat.in_habitable_zone===true
-              ?`<span class="hz-yes">✓ IN HZ</span>`
-              :`<span class="hz-no">Outside HZ</span>`}</div>
+              ?'<span class="hz-yes">✓ IN HZ</span>'
+              :'<span class="hz-no">Outside HZ</span>'}</div>
           </div>
         </div>
       </div>` : '';
@@ -552,25 +634,19 @@ function renderDash(target, data) {
           <div class="sig-label" style="color:${lc}">${cls.description||lbl}</div>
           <div class="sig-right">
             <div class="sig-conf">conf ${Math.round((cls.confidence||0)*100)}%</div>
-            <div class="hi-badge ${lbl==='planet'?'bp':lbl==='eclipsing_binary'?'be':lbl==='starspot'?'bs':'bb'}">
-              ${lbl==='planet'?'PLANET':lbl==='eclipsing_binary'?'EB':lbl==='starspot'?'SPOT':'FP'}
-            </div>
+            <div class="hi-badge ${badgeCls(lbl)}">${badgeTxt(lbl)}</div>
           </div>
         </div>
-
-        <!-- Parameters -->
         <div class="pgrid">
           <div><div class="pm-lbl">Period</div><div class="pm-val">${sig.best_period_days} d</div></div>
           <div><div class="pm-lbl">Depth</div><div class="pm-val">${sig.transit_depth_ppm} ppm</div></div>
           <div><div class="pm-lbl">Duration</div><div class="pm-val">${sig.transit_duration_hrs} h</div></div>
           <div><div class="pm-lbl">Epoch (BTJD)</div><div class="pm-val">${sig.transit_epoch_btjd}</div></div>
           <div><div class="pm-lbl">N transits</div><div class="pm-val">${sig.n_transits_expected}</div></div>
-          <div><div class="pm-lbl">Noise floor</div><div class="pm-val">${sig.noise_ppm} ppm</div></div>
+          <div><div class="pm-lbl">Noise floor</div><div class="pm-val">${sig.noise_floor_ppm||sig.noise_ppm||'—'} ppm</div></div>
           <div><div class="pm-lbl">BLS power</div><div class="pm-val">${sig.bls_power}</div></div>
           <div><div class="pm-lbl">FAP proxy</div><div class="pm-val">${sig.fap_proxy}</div></div>
         </div>
-
-        <!-- SNR + confidence bars -->
         <div class="bar-row">
           <div class="bar-lbl">Stacked SNR</div>
           <div class="bar-bg"><div class="bar-fill" style="width:${snrPct}%;background:${snrColor(snr)}"></div></div>
@@ -586,27 +662,20 @@ function renderDash(target, data) {
           <div class="bar-bg"><div class="bar-fill" style="width:${csPct}%;background:${lc}"></div></div>
           <div class="bar-val" style="color:${lc}">${cls.combined_score||'—'}</div>
         </div>
-
-        <!-- Class probabilities -->
         ${probsHTML}
-
-        <!-- Batman fit params -->
         ${batHTML}
-
-        <!-- Plots -->
         ${blsPlot}
         ${batPlot}
       </div>`;
   }).join('');
 
-  // ── Stellar info ──────────────────────────────────────────────────────────
   const stellarHTML = `
     <div class="sec">Stellar Parameters (TIC Catalog)</div>
     <div class="stellar-grid">
       <div class="st-item"><div class="st-lbl">Stellar Radius</div><div class="st-val">${stellar.radius_solar} R☉</div></div>
       <div class="st-item"><div class="st-lbl">Stellar Mass</div><div class="st-val">${stellar.mass_solar} M☉</div></div>
-      <div class="st-item"><div class="st-lbl">Obs Duration</div><div class="st-val">${data.duration_days} days</div></div>
-      <div class="st-item"><div class="st-lbl">Data Points</div><div class="st-val">${data.n_points}</div></div>
+      <div class="st-item"><div class="st-lbl">Obs Duration</div><div class="st-val">${data.baseline_days||data.duration_days} days</div></div>
+      <div class="st-item"><div class="st-lbl">Data Points</div><div class="st-val">${data.n_cadences||data.n_points}</div></div>
       <div class="st-item"><div class="st-lbl">Mission</div><div class="st-val">${data.mission}</div></div>
       <div class="st-item"><div class="st-lbl">Signals Found</div><div class="st-val">${data.n_signals_found}</div></div>
     </div>`;
@@ -616,21 +685,168 @@ function renderDash(target, data) {
       <div class="star-hdr">
         <div>
           <div class="star-name">${target}</div>
-          <div class="star-meta">${data.mission} · ${data.n_signals_found} signal(s) · ${data.n_points} data points</div>
+          <div class="star-meta">${data.mission} · ${data.n_signals_found} signal(s) · ${data.n_cadences||data.n_points} data points</div>
         </div>
         <div class="mission-tag">${data.mission}</div>
       </div>
-
       <div class="sec">Overview Metrics</div>
       ${metricsHTML}
-
       ${stellarHTML}
-
       ${lcPlot}
-
       <div class="sec">Detected Signals (${sigs.length})</div>
       ${sigsHTML.length ? sigsHTML : '<div style="color:var(--text3);font-size:12px;padding:8px 0;">No signals detected.</div>'}
     </div>`;
+}
+
+// ── Batch results ─────────────────────────────────────────────────────────────
+async function loadBatchResults() {
+  const el = document.getElementById('batch-content');
+  el.innerHTML = `<div style="color:var(--text2);font-family:var(--mono);font-size:11px;padding:40px;text-align:center;">
+    <div class="spinner" style="margin:0 auto 12px;"></div>Loading results.json…</div>`;
+  try {
+    const res  = await fetch('/results');
+    const data = await res.json();
+    if (data.error) {
+      el.innerHTML = `<div class="err-box" style="margin:20px 0;">⚠ ${data.error}</div>`;
+      return;
+    }
+    batchData = data;
+    renderBatch(data);
+  } catch(e) {
+    el.innerHTML = `<div class="err-box" style="margin:20px 0;">⚠ Could not load results.json. Is uvicorn running?</div>`;
+  }
+}
+
+function renderBatch(data) {
+  const summary = data.summary || {};
+  const results = data.results || [];
+  const cands   = (summary.planet_candidates || []);
+
+  document.getElementById('batch-meta').textContent =
+    `${results.length} stars processed · ${data.generated_at ? new Date(data.generated_at).toLocaleString() : ''}`;
+
+  // Label distribution counts
+  const dist = summary.label_distribution || {};
+  const totalOk = summary.successful || results.length;
+
+  // Summary cards
+  const summaryHTML = `
+    <div class="summary-grid">
+      <div class="sm-card">
+        <div class="sm-lbl">Stars Processed</div>
+        <div class="sm-val" style="color:var(--accent2)">${summary.total_processed||results.length}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">Successful</div>
+        <div class="sm-val" style="color:var(--green)">${summary.successful||totalOk}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">Planet Candidates</div>
+        <div class="sm-val" style="color:var(--green)">${dist.planet||0}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">Eclipsing Binary</div>
+        <div class="sm-val" style="color:var(--red)">${dist.eclipsing_binary||0}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">Starspot</div>
+        <div class="sm-val" style="color:var(--amber)">${dist.starspot||0}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">Blend / FP</div>
+        <div class="sm-val" style="color:var(--purple)">${dist.blend||0}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">Mean SNR</div>
+        <div class="sm-val">${summary.mean_snr||'—'}</div>
+      </div>
+      <div class="sm-card">
+        <div class="sm-lbl">SNR>7 Candidates</div>
+        <div class="sm-val" style="color:var(--green)">${cands.length}</div>
+      </div>
+    </div>`;
+
+  // Top planet candidates highlight cards
+  const candCardsHTML = cands.length ? `
+    <div class="sec">Top Planet Candidates (SNR > 7)</div>
+    <div class="cand-grid">
+      ${cands.slice(0,6).map(c => `
+        <div class="cand-card" onclick="run('${c.target}')">
+          <div class="cand-name">🪐 ${c.target}</div>
+          <div class="cand-row"><span class="cand-key">Period</span><span>${c.period_days} d</span></div>
+          <div class="cand-row"><span class="cand-key">Depth</span><span>${c.depth_ppm} ppm</span></div>
+          <div class="cand-row"><span class="cand-key">Stacked SNR</span><span style="color:var(--green)">${c.snr}</span></div>
+          <div class="cand-row"><span class="cand-key">Confidence</span><span>${Math.round(c.confidence*100)}%</span></div>
+          <div style="margin-top:7px;font-family:var(--mono);font-size:8px;color:var(--text3);">Click to analyse in detail →</div>
+        </div>`).join('')}
+    </div>` : `<div class="sec">No high-SNR planet candidates found in this batch</div>`;
+
+  // Full ranked table
+  const sorted = [...results].filter(r => r.signals && r.signals.length > 0)
+    .sort((a, b) => {
+      const va = a.signals[0].snr_stacked || 0;
+      const vb = b.signals[0].snr_stacked || 0;
+      return sortDir * (vb - va);
+    });
+
+  const tableHTML = `
+    <div class="sec">Full Results — Ranked by Stacked SNR</div>
+    <div class="rtable-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Target</th>
+            <th>Mission</th>
+            <th class="sortable ${sortCol==='snr'?sortDir===-1?'desc':'asc':''}" onclick="sortTable('snr')">SNR <span class="arrow"></span></th>
+            <th>Significance</th>
+            <th>Label</th>
+            <th>Confidence</th>
+            <th class="sortable ${sortCol==='period'?sortDir===-1?'desc':'asc':''}" onclick="sortTable('period')">Period (d) <span class="arrow"></span></th>
+            <th>Depth (ppm)</th>
+            <th>Duration (h)</th>
+            <th>N Transits</th>
+            <th>FAP proxy</th>
+            <th>Rp (R⊕)</th>
+            <th>In HZ?</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${sorted.map((r, i) => {
+            const s   = r.signals[0];
+            const cls = s.classification;
+            const bat = r.transit_fit || s.batman_fit || {};
+            const snr = s.snr_stacked || 0;
+            const snrCl = snr>=7?'snr-high':snr>=4?'snr-mid':'snr-low';
+            const lbl = cls.label || 'blend';
+            return `<tr onclick="run('${r.target}')">
+              <td style="color:var(--text3)">${i+1}</td>
+              <td class="target-cell">${r.target}</td>
+              <td>${r.mission||'TESS'}</td>
+              <td class="${snrCl}">${snr}</td>
+              <td style="font-size:9px;color:var(--text3)">${s.significance||'—'}</td>
+              <td><span class="lbl-pill ${badgeCls(lbl)}">${badgeTxt(lbl)}</span></td>
+              <td>${Math.round((cls.confidence||0)*100)}%</td>
+              <td>${s.best_period_days}</td>
+              <td>${s.transit_depth_ppm}</td>
+              <td>${s.transit_duration_hrs}</td>
+              <td>${s.n_transits_expected||'—'}</td>
+              <td>${s.fap_proxy||'—'}</td>
+              <td>${bat.planet_radius_earth||'—'}</td>
+              <td>${bat.in_habitable_zone===true?'<span class="hz-yes">YES</span>':bat.in_habitable_zone===false?'<span class="hz-no">No</span>':'—'}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+
+  document.getElementById('batch-content').innerHTML = summaryHTML + candCardsHTML + tableHTML;
+}
+
+function sortTable(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = -1; }
+  if (batchData) renderBatch(batchData);
 }
 </script>
 </body>
